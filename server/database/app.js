@@ -46,6 +46,12 @@ module.exports.createStore = () => {
     userId: {type: Sequelize.INTEGER, allowNull: false}
   });
 
+  const Like = db.define('likes', {
+    id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+    postId: {type: Sequelize.INTEGER, allowNull: false},
+    userId: {type: Sequelize.INTEGER, allowNull: false}
+  });
+
   const Post = db.define('posts', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
     description: {type: Sequelize.STRING, allowNull: true},
@@ -57,9 +63,16 @@ module.exports.createStore = () => {
   UserUser.belongsTo(User, { foreignKey: 'userFollowerId', as: 'userFollower' });
   UserUser.belongsTo(User, { foreignKey: 'userId', as: 'userFollow' });
   User.belongsToMany(User,{through: 'userUser', foreignKey: 'userFollowerId', as: 'user'});
+
+  User.belongsToMany(Like,{through: Like, foreignKey: 'likeId', as: 'likeId'});
+  Like.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+  Like.belongsTo(Post, { foreignKey: 'postId', as: 'post' });
+  Post.belongsToMany(Like,{through: Like, foreignKey: 'likeId', as: 'likeId'});
+
+
   Token.belongsTo(User);
   Post.belongsTo(User);
 
-  return { db, User, UserUser, Token, Post }
+  return { db, User, UserUser, Token, Like, Post }
 };
 

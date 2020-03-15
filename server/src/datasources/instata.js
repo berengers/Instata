@@ -31,6 +31,32 @@ class InstataAPI extends DataSource {
     }
   }
 
+  async getLikes(post) {
+    return this.store.Like.findAll({
+      where: { postId: post.id },
+      include: [{ model: this.store.User, as: 'user' }]
+    });
+  }
+
+  async addPostLike(postId) {
+    if (!this.context.user.id) this._forbiddenError();
+
+    await this.store.Like.create({ postId, userId: this.context.user.id });
+    return this.store.Post.findOne({ where: { id: postId } });
+  }
+
+  async deletePostLike(postId) {
+    if (!this.context.user.id) this._forbiddenError();
+
+    const like = await this.store.Like.findOne({ where: { postId } });
+    await like.destroy();
+    return this.store.Post.findOne({ where: { id: postId } });
+  }
+
+  async getLikesCount(post) {
+    return this.store.Like.count({ where: { postId: post.id } })
+  }
+
   async getUser(id) {
     const userId = id || this.context.user.id;
 
@@ -44,11 +70,20 @@ class InstataAPI extends DataSource {
   }
 
   async getPost(id) {
+    if (!this.context.user.id) return this._forbiddenError();
+
     const post = await this.store.Post.findOne({ where: { id } });
 
     if (!post) throw new Error('No content');
 
     return post
+  }
+
+  async postAlreadyLiked(postId) {
+    if (!this.context.user.id) return this._forbiddenError();
+
+    const liked = await this.store.Like.findOne({ where: { postId: postId, userId: this.context.user.id } });
+    return Boolean(liked)
   }
 
   async getFollowed(user) {

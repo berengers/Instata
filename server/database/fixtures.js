@@ -1,6 +1,6 @@
 const { createStore } = require('./app');
 
-const {db, User, UserUser, Token, Post} = createStore();
+const {db, User, UserUser, Token, Post, Like} = createStore();
 
 const users = [
   {
@@ -56,10 +56,17 @@ const posts = [
   {description: "post 2 - user 2", media: "https://picsum.photos/id/1025", userId: "2"},
 ];
 
+const likes = [
+  {userId: 1, postId: 1},
+  {userId: 1, postId: 2},
+  {userId: 1, postId: 3}
+];
+
 
 db.sync({ force: false })
   .then(() => { Promise.all(users.map(user => User.create(user))) })
   .then(() => { Promise.all(userUser.map(join => UserUser.create(join))) })
   .then(() => { Promise.all(authTokens.map(post => Token.create(post))) })
   .then(() => { Promise.all(posts.map(token => Post.create(token))) })
+  .then(() => { Promise.all(likes.map(like => Like.create(like))) })
   .then(() => { console.log('fixtures inserted <------------------') });

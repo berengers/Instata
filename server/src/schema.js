@@ -20,6 +20,9 @@ const typeDefs = gql`
       id: ID!
       description: String
       media: String!
+      liked: Boolean!
+      likes: [Like]
+      likesCount: Int
       createdAt: Date
       updatedAt: Date
   }
@@ -64,6 +67,7 @@ const typeDefs = gql`
   type Mutation {
       addFollow(userId: ID!): Boolean
       createPost(post: PostInput!): Post
+      togglePostLike(postId: ID!): Post
       login(email: String! password: String!): String #login token
   }
   

@@ -37,6 +37,24 @@ module.exports = {
       }))
     }
   },
+  Post: {
+    liked: async (post, __, { dataSources }) => {
+      const liked = await dataSources.instataAPI.postAlreadyLiked(post.id);
+      return Boolean(liked)
+    },
+    likes: async (post, __, { dataSources } ) => {
+      const likes = await dataSources.instataAPI.getLikes(post);
+      return likes.map(like => ({
+        id: like.id,
+        user: like.user, // TODO - Add service for format/validate data
+        post,
+        createdAt: like.createdAt
+      }));
+    },
+    likesCount: (post, _, { dataSources }) => {
+      return dataSources.instataAPI.getLikesCount(post);
+    }
+  },
   User: {
     follows: async (user, __, { dataSources }) => {
       const followed = await dataSources.instataAPI.getFollowed(user);
@@ -77,6 +95,19 @@ module.exports = {
       const done = await dataSources.instataAPI.addFollow(userId);
 
       return Boolean(done)
+    },
+    togglePostLike: async (_, { postId }, { dataSources }) => {
+      const liked = await dataSources.instataAPI.postAlreadyLiked(postId);
+
+      let post = null;
+
+      if (liked) {
+        post = await dataSources.instataAPI.deletePostLike(postId);
+      } else {
+        post = await dataSources.instataAPI.addPostLike(postId);
+      }
+
+      return post // TODO - use service to format data
     },
     createPost: async (_, { post }, { dataSources }) => {
       const newPost = await dataSources.instataAPI.createPost(post);
