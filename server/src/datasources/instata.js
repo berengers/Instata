@@ -1,19 +1,19 @@
-const { AuthenticationError, ForbiddenError } = require('apollo-server');
-const { DataSource } = require('apollo-datasource');
-const { v4: uuid } = require('uuid');
+const { AuthenticationError, ForbiddenError } = require("apollo-server");
+const { DataSource } = require("apollo-datasource");
+const { v4: uuid } = require("uuid");
 
 class InstataAPI extends DataSource {
-  constructor({store}) {
+  constructor({ store }) {
     super();
-    this.store = store
+    this.store = store;
   }
 
   initialize(config) {
-    this.context = config.context
+    this.context = config.context;
   }
 
   _forbiddenError() {
-    throw new ForbiddenError()
+    throw new ForbiddenError();
   }
 
   async login(email, password) {
@@ -24,17 +24,17 @@ class InstataAPI extends DataSource {
     const token = uuid();
 
     try {
-      await this.store.Token.create({ token, userId: user.id })
-      return token
+      await this.store.Token.create({ token, userId: user.id });
+      return token;
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
   }
 
   async getLikes(post) {
     return this.store.Like.findAll({
       where: { postId: post.id },
-      include: [{ model: this.store.User, as: 'user' }]
+      include: [{ model: this.store.User, as: "user" }]
     });
   }
 
@@ -54,7 +54,7 @@ class InstataAPI extends DataSource {
   }
 
   async getLikesCount(post) {
-    return this.store.Like.count({ where: { postId: post.id } })
+    return this.store.Like.count({ where: { postId: post.id } });
   }
 
   async getUser(id) {
@@ -64,9 +64,9 @@ class InstataAPI extends DataSource {
 
     const user = await this.store.User.findOne({ where: { id: userId } });
 
-    if(!user) throw new Error('No found user');
+    if (!user) throw new Error("No found user");
 
-    return user
+    return user;
   }
 
   async getPost(id) {
@@ -74,51 +74,56 @@ class InstataAPI extends DataSource {
 
     const post = await this.store.Post.findOne({ where: { id } });
 
-    if (!post) throw new Error('No content');
+    if (!post) throw new Error("No content");
 
-    return post
+    return post;
   }
 
   async postAlreadyLiked(postId) {
     if (!this.context.user.id) return this._forbiddenError();
 
-    const liked = await this.store.Like.findOne({ where: { postId: postId, userId: this.context.user.id } });
-    return Boolean(liked)
+    const liked = await this.store.Like.findOne({
+      where: { postId: postId, userId: this.context.user.id }
+    });
+    return Boolean(liked);
   }
 
-  async getFollowed(user) {
+  async getFollowed(userId) {
     return this.store.UserUser.findAll({
-      where: { userFollowerId: user.id },
-      include: [{ model: this.store.User, as: 'userFollow' }]
+      where: { userFollowerId: userId },
+      include: [{ model: this.store.User, as: "userFollow" }]
     });
   }
 
-  async getFollowedCount(user) {
-    return this.store.UserUser.count({ where: { userFollowerId: user.id } });
+  async getFollowedCount(userId) {
+    return this.store.UserUser.count({ where: { userFollowerId: userId } });
   }
 
-  async getFollowers(user) {
+  async getFollowers(userId) {
     return this.store.UserUser.findAll({
-      where: { userId: user.id },
-      include: [{ model: this.store.User, as: 'userFollower' }]
+      where: { userId: userId },
+      include: [{ model: this.store.User, as: "userFollower" }]
     });
   }
 
-  async getFollowersCount(user) {
-    return this.store.UserUser.count({ where: { userId: user.id } });
+  async getFollowersCount(userId) {
+    return this.store.UserUser.count({ where: { userId } });
   }
 
-
-  async getUserPosts(id) {
+  async getPosts(id) {
     const userId = id || this.context.user.id;
 
     if (!userId) this._forbiddenError();
 
     const posts = await this.store.Post.findAll({ where: { userId } });
 
-    if (!posts) throw new Error('Strange');
+    if (!posts) throw new Error("Strange");
 
-    return posts
+    return posts;
+  }
+
+  async getPostsCount(userId) {
+    return this.store.Post.count({ where: { userId } });
   }
 
   async createPost(post) {
@@ -127,11 +132,13 @@ class InstataAPI extends DataSource {
     return this.store.Post.create({ ...post, userId: this.context.user.id });
   }
 
-
   async addFollow(userId) {
     if (!this.context.user.id) this._forbiddenError();
 
-    return this.store.UserUser.create({userId, userFollowerId: this.context.user.id});
+    return this.store.UserUser.create({
+      userId,
+      userFollowerId: this.context.user.id
+    });
   }
 }
 
