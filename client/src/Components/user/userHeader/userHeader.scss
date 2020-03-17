@@ -1,0 +1,50 @@
+.UserHeader {
+  display: flex;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.UserHeader-profil_picture_container {
+  flex: 1;
+  margin-right: 30px;
+  text-align: center;
+}
+
+.UserHeader-profil_picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.UserHeader-informations {
+  flex: 2;
+}
+
+.UserHeader-informations-nickname {
+  font-size: 25px;
+}
+
+.UserHeader-informations-set_profil {
+  border: 1px solid grey;
+  border-radius: 5px;
+  font-size: 13px;
+  margin-left: 20px;
+  padding: 3px 5px;
+  &:hover { cursor: pointer }
+}
+
+.UserHeader-informations-settings {
+  margin-left: 13px;
+}
+
+.UserHeader-informations-data {
+  display: flex;
+  & > * {
+    margin-right: 20px;
+  }
+}
+
+.UserHeader-informations-name {
+  margin-top: 25px;
+}
