@@ -24,7 +24,7 @@ function UserHeader({ user }: Props) {
       <div className="UserHeader-profil_picture_container">
         <img
           className="UserHeader-profil_picture"
-          src="https://picsum.photos/id/1062/320/120"
+          src={user.profilPicture}
           alt="profile"
         />
       </div>

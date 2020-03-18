@@ -1,14 +1,15 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import { useParams } from "react-router-dom";
 
 import UserHeader from "Components/user/userHeader/userHeader";
 import PostsList from "Components/postsList/postsList";
 import "./user.scss";
 
 const GET_USER_HEADER = gql`
-  {
-    user {
+  query getUser($username: String) {
+    user(username: $username) {
       id
       username
       name
@@ -28,7 +29,10 @@ const GET_USER_HEADER = gql`
 `;
 
 function User() {
-  const { loading, error, data } = useQuery(GET_USER_HEADER);
+  const { username } = useParams();
+  const { loading, error, data } = useQuery(GET_USER_HEADER, {
+    variables: { username }
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>ERROR: {error.message}</p>;
