@@ -90,12 +90,12 @@ const posts = [
   },
   {
     description: "post 1 - user 2",
-    media: "https://picsum.photos/id/1030/800/800",
+    media: "https://picsum.photos/id/1031/800/800",
     userId: "2"
   },
   {
     description: "post 2 - user 2",
-    media: "https://picsum.photos/id/1031/800/800",
+    media: "https://picsum.photos/id/1032/800/800",
     userId: "2"
   }
 ];

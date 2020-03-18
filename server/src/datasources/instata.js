@@ -57,12 +57,20 @@ class InstataAPI extends DataSource {
     return this.store.Like.count({ where: { postId: post.id } });
   }
 
-  async getUser(id) {
-    const userId = id || this.context.user.id;
+  async getUser(id, username) {
+    const params = {};
 
-    if (!userId) this._forbiddenError();
+    if (id) {
+      params.id = id;
+    } else if (username) {
+      params.username = username;
+    } else if (this.context.user.id) {
+      params.id = this.context.user.id;
+    } else {
+      this._forbiddenError();
+    }
 
-    const user = await this.store.User.findOne({ where: { id: userId } });
+    const user = await this.store.User.findOne({ where: params });
 
     if (!user) throw new Error("No found user");
 

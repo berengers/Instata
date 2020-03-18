@@ -1,7 +1,7 @@
 module.exports = {
   Query: {
-    user: async (_, { id }, { dataSources }) => {
-      const user = await dataSources.instataAPI.getUser(id);
+    user: async (_, { id, username }, { dataSources }) => {
+      const user = await dataSources.instataAPI.getUser(id, username);
       return {
         id: user.id,
         email: user.email,
