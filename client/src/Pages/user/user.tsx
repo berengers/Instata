@@ -21,6 +21,7 @@ const GET_USER_HEADER = gql`
       posts {
         id
         media
+        likesCount
       }
     }
   }
