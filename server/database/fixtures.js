@@ -50,22 +50,52 @@ const authTokens = [{ token: "tom_token", userId: 1 }];
 const posts = [
   {
     description: "post 1 - user 1",
-    media: "https://picsum.photos/id/1022",
+    media: "https://picsum.photos/id/1022/800/800",
     userId: "1"
   },
   {
     description: "post 2 - user 1",
-    media: "https://picsum.photos/id/1023",
+    media: "https://picsum.photos/id/1023/800/800",
+    userId: "1"
+  },
+  {
+    description: "post 3 - user 1",
+    media: "https://picsum.photos/id/1024/800/800",
+    userId: "1"
+  },
+  {
+    description: "post 4 - user 1",
+    media: "https://picsum.photos/id/1025/800/800",
+    userId: "1"
+  },
+  {
+    description: "post 5 - user 1",
+    media: "https://picsum.photos/id/1026/800/800",
+    userId: "1"
+  },
+  {
+    description: "post 6 - user 1",
+    media: "https://picsum.photos/id/1027/800/800",
+    userId: "1"
+  },
+  {
+    description: "post 7 - user 1",
+    media: "https://picsum.photos/id/1028/800/800",
+    userId: "1"
+  },
+  {
+    description: "post 8 - user 1",
+    media: "https://picsum.photos/id/1029/800/800",
     userId: "1"
   },
   {
     description: "post 1 - user 2",
-    media: "https://picsum.photos/id/1024",
+    media: "https://picsum.photos/id/1030/800/800",
     userId: "2"
   },
   {
     description: "post 2 - user 2",
-    media: "https://picsum.photos/id/1025",
+    media: "https://picsum.photos/id/1031/800/800",
     userId: "2"
   }
 ];

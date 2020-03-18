@@ -3,6 +3,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
 import UserHeader from "Components/user/userHeader/userHeader";
+import PostsList from "Components/postsList/postsList";
+import "./user.scss";
 
 const GET_USER_HEADER = gql`
   {
@@ -35,7 +37,10 @@ function User() {
 
   return (
     <div className="User">
-      <UserHeader user={user} />
+      <div className="User-userHeader">
+        <UserHeader user={user} />
+      </div>
+      <PostsList posts={user.posts} />
     </div>
   );
 }
