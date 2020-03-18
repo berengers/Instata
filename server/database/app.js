@@ -31,7 +31,7 @@ module.exports.createStore = () => {
     name: { type: Sequelize.STRING, allowNull: false },
     description: { type: Sequelize.STRING, allowNull: true },
     password: { type: Sequelize.STRING, allowNull: false },
-    profilPicture: { type: Sequelize.STRING, allowNull: true }
+    profilePicture: { type: Sequelize.STRING, allowNull: true }
   });
 
   const UserUser = db.define(

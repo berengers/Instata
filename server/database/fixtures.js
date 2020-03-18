@@ -10,7 +10,7 @@ const users = [
     name: "Tom Pouce",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod lacus sem, laoreet gravida felis pellentesque id. In quis placerat leo. Donec in purus ac orci pellentesque lacinia.",
-    profilPicture: "https://picsum.photos/id/237/200/300"
+    profilePicture: "https://picsum.photos/id/237/200/300"
   },
   {
     email: "pierre@gmail.com",
@@ -19,21 +19,21 @@ const users = [
     name: "Pierre Boilan",
     description:
       "Ut quis elementum risus. Maecenas vel augue consectetur, consectetur tellus ultrices, auctor ex. Nam rhoncus, risus sit amet molestie lobortis, est magna mollis diam, vel volutpat magna orci at velit. Donec fermentum quam quis odio varius, a tempus sem fermentum.",
-    profilPicture: "https://picsum.photos/id/1025/200/300"
+    profilePicture: "https://picsum.photos/id/1025/200/300"
   },
   {
     email: "robert@gmail.com",
     password: "robert_pass",
     username: "Kiloulou",
     name: "Natalia",
-    profilPicture: "https://picsum.photos/id/1026/200/300"
+    profilePicture: "https://picsum.photos/id/1026/200/300"
   },
   {
     email: "john@gmail.com",
     password: "john_pass",
     username: "DODO",
     name: "John",
-    profilPicture: "https://picsum.photos/id/1027/200/300"
+    profilePicture: "https://picsum.photos/id/1027/200/300"
   }
 ];
 

@@ -31,7 +31,7 @@ const typeDefs = gql`
     username: String!
     name: String!
     description: String
-    profilPicture: String
+    profilePicture: String
     likes: [Like]
     follows: [User]
     followsCount: Int!

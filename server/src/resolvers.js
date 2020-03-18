@@ -8,7 +8,7 @@ module.exports = {
         username: user.username,
         name: user.name,
         description: user.description,
-        profilPicture: user.profilPicture,
+        profilePicture: user.profilePicture,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt
       };
@@ -63,7 +63,7 @@ module.exports = {
         username: join.userFollow.username,
         name: join.userFollow.name,
         description: join.userFollow.description,
-        profilPicture: join.userFollow.profilPicture,
+        profilePicture: join.userFollow.profilePicture,
         createdAt: join.userFollow.createdAt,
         updatedAt: join.userFollow.updatedAt
       }));
@@ -78,7 +78,7 @@ module.exports = {
         username: join.userFollower.username,
         name: join.userFollower.name,
         description: join.userFollower.description,
-        profilPicture: join.userFollower.profilPicture,
+        profilePicture: join.userFollower.profilePicture,
         createdAt: join.userFollower.createdAt,
         updatedAt: join.userFollower.updatedAt
       }));

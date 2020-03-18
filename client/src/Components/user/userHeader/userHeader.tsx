@@ -12,7 +12,7 @@ interface UserInformations {
   username: string;
   name: string;
   description?: string;
-  profilPicture?: string;
+  profilePicture?: string;
   followersCount: number;
   followsCount: number;
   postsCount: number;
@@ -24,7 +24,7 @@ function UserHeader({ user }: Props) {
       <div className="UserHeader-profil_picture_container">
         <img
           className="UserHeader-profil_picture"
-          src={user.profilPicture}
+          src={user.profilePicture}
           alt="profile"
         />
       </div>

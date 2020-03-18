@@ -14,7 +14,7 @@ const GET_USER_HEADER = gql`
       username
       name
       description
-      profilPicture
+      profilePicture
       followersCount
       followsCount
       postsCount
