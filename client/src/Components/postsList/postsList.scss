@@ -1,15 +1,13 @@
-@import "../../Scss/var";
-
 .PostsList-line {
   display: flex;
   margin-bottom: 3px;
-  @media only screen and (min-width: $breakpoint-sm) {
+  @media only screen and (min-width: var(--breakpoint-sm)) {
     margin-bottom: 28px;
   }
 
   & > * {
     margin-right: 3px;
-    @media only screen and (min-width: $breakpoint-sm) {
+    @media only screen and (min-width: var(--breakpoint-sm)) {
       margin-right: 28px;
     }
     flex: 1;

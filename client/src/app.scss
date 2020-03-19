@@ -1,12 +1,10 @@
-@import "Scss/var";
-
 .App {
   background-color: #fafafa;
   min-height: 100vh;
 }
 
 .App-container {
-  max-width: $app-max-width;
+  max-width: var(--app-max-width);
   margin: 0 auto;
   padding-bottom: 40px;
 }
