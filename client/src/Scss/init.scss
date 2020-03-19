@@ -1,3 +1,6 @@
 * {
   box-sizing: border-box;
 }
+
+a:active { color: unset; }
+a:visited { color: unset; }

@@ -1,0 +1,31 @@
+@import "../../Scss/var";
+
+a:active { opacity: .5 }
+
+.AppBar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #dbdbdb;
+  background: white;
+}
+
+.AppBar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 54px;
+  max-width: $app-max-width;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.AppBar-logo {
+  height: 29px;
+}
+
+.AppBar-menu {
+  display: flex;
+  align-items: center;
+}
