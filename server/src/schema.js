@@ -27,6 +27,7 @@ const typeDefs = gql`
     liked: Boolean!
     likes: [Like]
     likesCount: Int
+    user: User!
     createdAt: Date
     updatedAt: Date
   }
@@ -64,6 +65,7 @@ const typeDefs = gql`
     user(id: ID, username: String): User
     post(id: ID!): Post
     posts(userId: ID): [Post]
+    feed: [Post]
   }
 
   ########## MUTATION ###########

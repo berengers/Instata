@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { AuthenticationError, ForbiddenError } = require("apollo-server");
 const { DataSource } = require("apollo-datasource");
 const { v4: uuid } = require("uuid");
@@ -29,6 +30,42 @@ class InstataAPI extends DataSource {
     } catch (e) {
       throw new Error(e);
     }
+  }
+
+  async getFeedPosts() {
+    if (!this.context.user.id) this._forbiddenError();
+
+    const users = await this.store.UserUser.findAll({
+      where: { userFollowerId: this.context.user.id },
+      order: [
+        [
+          { model: this.store.User, as: "userFollow" },
+          { model: this.store.Post },
+          "createdAt",
+          "DESC"
+        ]
+      ],
+      include: [
+        {
+          model: this.store.User,
+          as: "userFollow",
+          include: [{ model: this.store.Post }]
+        }
+      ]
+    });
+
+    const usersId = users.map(user => user.userFollow.id);
+
+    return this.store.Post.findAll({
+      limit: 2,
+      where: { userId: { [Op.or]: usersId } },
+      order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: this.store.User
+        }
+      ]
+    });
   }
 
   async getLikes(post) {

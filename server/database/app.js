@@ -101,6 +101,7 @@ module.exports.createStore = () => {
   });
 
   Token.belongsTo(User);
+  User.hasMany(Post);
   Post.belongsTo(User);
 
   return { db, User, UserUser, Token, Like, Post };
