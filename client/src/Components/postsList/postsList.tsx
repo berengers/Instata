@@ -1,8 +1,7 @@
 import React from "react";
 import _chunk from "lodash/chunk";
 
-import Post from "Components/post/post";
-import { PostInterface } from "Components/post/post";
+import PostPreview, { PostInterface } from "Components/postPreview/postPreview";
 import "./postsList.scss";
 
 interface PropsInterface {
@@ -18,7 +17,7 @@ function PostsList({ posts }: PropsInterface) {
         <div key={`line-${line[0].id}`} className="PostsList-line">
           {line.map((post, i) => {
             return post.id ? (
-              <Post key={post.id} post={post} />
+              <PostPreview key={post.id} post={post} />
             ) : (
               <div key={`empty-${i}`} />
             );

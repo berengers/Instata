@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { UserContext } from "Components/context/userContext";
+import Feed from "Pages/feed/feed";
 import Login from "Pages/login/login";
 import User from "Pages/user/user";
 import AppBar from "Components/appBar/appBar";
@@ -26,7 +27,7 @@ function App() {
             <Route exact path="/:username">
               <User />
             </Route>
-            <Route path="/">{isLogged ? <h1>feed</h1> : <Login />}</Route>
+            <Route path="/">{isLogged ? <Feed /> : <Login />}</Route>
           </Switch>
         </div>
       </Router>
