@@ -1,7 +1,7 @@
 module.exports = {
   Query: {
     user: async (_, { id, username }, { dataSources }) => {
-      const user = await dataSources.instataAPI.getUser(id, username);
+      const user = await dataSources.instataAPI.getUser({ id, username });
       return {
         id: user.id,
         email: user.email,
@@ -103,7 +103,9 @@ module.exports = {
   },
   Mutation: {
     login: async (_, { email, password }, { dataSources }) => {
-      return dataSources.instataAPI.login(email, password);
+      const token = await dataSources.instataAPI.login(email, password);
+      const user = await dataSources.instataAPI.getUser({ email });
+      return { token, userId: user.id, username: user.username };
     },
     addFollow: async (_, { userId }, { dataSources }) => {
       const done = await dataSources.instataAPI.addFollow(userId);

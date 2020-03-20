@@ -5,6 +5,7 @@ a:active { opacity: .5 }
   top: 0;
   left: 0;
   right: 0;
+  z-index: 50;
   border-bottom: 1px solid #dbdbdb;
   background: white;
 }
@@ -26,4 +27,8 @@ a:active { opacity: .5 }
 .AppBar-menu {
   display: flex;
   align-items: center;
+
+  & > * {
+    margin-left: 15px;
+  }
 }

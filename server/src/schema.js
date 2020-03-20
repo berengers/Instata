@@ -14,6 +14,12 @@ const typeDefs = gql`
     updatedAt: Date
   }
 
+  type Login {
+    token: String!
+    userId: Int!
+    username: String!
+  }
+
   type Post {
     id: ID!
     description: String
@@ -66,7 +72,7 @@ const typeDefs = gql`
     addFollow(userId: ID!): Boolean
     createPost(post: PostInput!): Post
     togglePostLike(postId: ID!): Post
-    login(email: String!, password: String!): String #login token
+    login(email: String!, password: String!): Login
   }
 `;
 

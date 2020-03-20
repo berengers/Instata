@@ -57,13 +57,15 @@ class InstataAPI extends DataSource {
     return this.store.Like.count({ where: { postId: post.id } });
   }
 
-  async getUser(id, username) {
+  async getUser({ id, username, email }) {
     const params = {};
 
     if (id) {
       params.id = id;
     } else if (username) {
       params.username = username;
+    } else if (email) {
+      params.email = email;
     } else if (this.context.user.id) {
       params.id = this.context.user.id;
     } else {

@@ -6,17 +6,27 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import "./index.scss";
 import App from "./app";
 import * as serviceWorker from "./serviceWorker";
+import {
+  UserContext,
+  CreateUserContext
+} from "./Components/context/userContext";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
-  headers: { authorization: "tom_token" }
+  headers: { authorization: localStorage.getItem("token") }
 });
 
-const Root = () => (
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
-);
+const Root = () => {
+  const userContext = CreateUserContext();
+
+  return (
+    <ApolloProvider client={client}>
+      <UserContext.Provider value={userContext}>
+        <App />
+      </UserContext.Provider>
+    </ApolloProvider>
+  );
+};
 
 ReactDOM.render(<Root />, document.getElementById("root"));
 
