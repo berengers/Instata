@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { UserContext } from "Components/context/userContext";
@@ -10,6 +10,12 @@ import "./app.scss";
 
 function App() {
   const { isLogged } = useContext(UserContext);
+
+  useEffect(() => {
+    if (!isLogged) {
+      localStorage.removeItem("token");
+    }
+  }, [isLogged]);
 
   return (
     <div className="App">

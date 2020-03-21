@@ -13,6 +13,7 @@ const LOGIN_USER = gql`
       token
       userId
       username
+      profilePicture
     }
   }
 `;
@@ -43,7 +44,12 @@ function Login() {
   const [login, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
       localStorage.setItem("token", login.token as string);
-      setUserContext(true, login.username as string);
+      setUserContext(
+        true,
+        login.userId as number,
+        login.username as string,
+        login.profilePicture as string
+      );
     }
   });
 

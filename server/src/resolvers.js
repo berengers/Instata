@@ -1,7 +1,7 @@
 module.exports = {
   Query: {
-    feed: async (_, __, { dataSources }) => {
-      return dataSources.instataAPI.getFeedPosts();
+    feed: async (_, { limit, offset }, { dataSources }) => {
+      return dataSources.instataAPI.getFeedPosts({ limit, offset });
     },
     user: async (_, { id, username }, { dataSources }) => {
       const user = await dataSources.instataAPI.getUser({ id, username });
@@ -108,7 +108,12 @@ module.exports = {
     login: async (_, { email, password }, { dataSources }) => {
       const token = await dataSources.instataAPI.login(email, password);
       const user = await dataSources.instataAPI.getUser({ email });
-      return { token, userId: user.id, username: user.username };
+      return {
+        token,
+        userId: user.id,
+        username: user.username,
+        profilePicture: user.profilePicture
+      };
     },
     addFollow: async (_, { userId }, { dataSources }) => {
       const done = await dataSources.instataAPI.addFollow(userId);

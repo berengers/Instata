@@ -1,7 +1,9 @@
+@import "../../Scss/var";
+
 .User {
   padding-top: 30px;
 
-  @media only screen and (min-width: var(--breakpoint-sm)) {
+  @media only screen and (min-width: $breakpoint-sm) {
     padding-left: 20px;
     padding-right: 20px;
   }

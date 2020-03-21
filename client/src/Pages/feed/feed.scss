@@ -1,3 +1,27 @@
+@import "../../Scss/var";
+
 .Feed {
-  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 30px;
+
+  @media only screen and (min-width: $breakpoint-lg) {
+    justify-content: space-between;
+  }
+}
+
+.Feed-posts {
+  & > * {
+    margin-bottom: 30px;
+  }
+}
+
+.Feed-sidebar {
+  display: none;
+  width: calc(#{$app-max-width} - #{$feed-post-width} - 28px);
+
+  @media only screen and (min-width: $breakpoint-lg) {
+    display: block;
+  }
 }

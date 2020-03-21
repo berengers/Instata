@@ -1,8 +1,8 @@
-:root {
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
 
-  --app-max-width: 935px;
-}
+$app-max-width: 935px;
+
+$feed-post-width: 614px;

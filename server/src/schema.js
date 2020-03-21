@@ -18,6 +18,7 @@ const typeDefs = gql`
     token: String!
     userId: Int!
     username: String!
+    profilePicture: String
   }
 
   type Post {
@@ -65,7 +66,7 @@ const typeDefs = gql`
     user(id: ID, username: String): User
     post(id: ID!): Post
     posts(userId: ID): [Post]
-    feed: [Post]
+    feed(limit: Int, offset: Int): [Post]
   }
 
   ########## MUTATION ###########

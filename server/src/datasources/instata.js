@@ -32,7 +32,7 @@ class InstataAPI extends DataSource {
     }
   }
 
-  async getFeedPosts() {
+  async getFeedPosts({ limit = 10, offset = 0 }) {
     if (!this.context.user.id) this._forbiddenError();
 
     const users = await this.store.UserUser.findAll({
@@ -57,7 +57,7 @@ class InstataAPI extends DataSource {
     const usersId = users.map(user => user.userFollow.id);
 
     return this.store.Post.findAll({
-      limit: 2,
+      limit,
       where: { userId: { [Op.or]: usersId } },
       order: [["createdAt", "DESC"]],
       include: [

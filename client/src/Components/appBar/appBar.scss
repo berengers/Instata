@@ -1,3 +1,5 @@
+@import "../../Scss/var";
+
 a:active { opacity: .5 }
 
 .AppBar {
@@ -15,7 +17,7 @@ a:active { opacity: .5 }
   justify-content: space-between;
   align-items: center;
   height: 54px;
-  max-width: var(--app-max-width);
+  max-width: $app-max-width;
   margin: 0 auto;
   padding: 0 20px;
 }

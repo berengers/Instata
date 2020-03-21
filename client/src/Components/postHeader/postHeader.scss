@@ -1,0 +1,6 @@
+.PostHeader {
+  display: flex;
+  padding: 16px;
+
+  & > :first-child { margin-right: 10px }
+}

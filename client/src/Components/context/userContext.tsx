@@ -2,33 +2,63 @@ import React, { useState } from "react";
 
 interface IUserContext {
   isLogged: boolean;
+  userId: number;
   username: string;
-  setUserContext: (isLogged: boolean, username?: string) => void;
+  profilePicture?: string;
+  setUserContext: (
+    isLogged: boolean,
+    userId?: number,
+    username?: string,
+    profilePicture?: string
+  ) => void;
 }
 
 export const CreateUserContext = (): IUserContext => {
   const tokenExist = Boolean(localStorage.getItem("token"));
+  const contextLocal = JSON.parse(
+    localStorage.getItem("userContext") as string
+  );
   const [isLogged, setIsLogged] = useState(tokenExist);
-  const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState(
+    contextLocal ? contextLocal.userId : null
+  );
+  const [username, setUsername] = useState(
+    contextLocal ? contextLocal.username : ""
+  );
+  const [profilePicture, setProfilePicture] = useState(
+    contextLocal ? contextLocal.profilePicture : ""
+  );
 
-  const setUserContext = (isLogged: boolean, username?: string) => {
+  const setUserContext = (
+    isLogged: boolean,
+    userId?: number,
+    username?: string,
+    profilePicture?: string
+  ) => {
     setIsLogged(isLogged);
-    if (username) setUsername(username);
 
     if (isLogged) {
+      if (userId) setUserId(userId);
+      if (username) setUsername(username);
+      if (profilePicture) setProfilePicture(profilePicture);
+
       localStorage.setItem(
         "userContext",
-        JSON.stringify({ isLogged, username })
+        JSON.stringify({ isLogged, userId, username, profilePicture })
       );
     } else {
+      setUserId(null);
+      setUsername("");
+      setProfilePicture("");
       localStorage.removeItem("userContext");
-      localStorage.removeItem("token");
     }
   };
 
   return {
     isLogged,
+    userId,
     username,
+    profilePicture,
     setUserContext
   };
 };

@@ -5,13 +5,16 @@ import { Link } from "react-router-dom";
 import "./appBar.scss";
 import logo from "Static/instata-logo.png";
 import { UserContext } from "Components/context/userContext";
+import ProfileIcon from "Components/profileIcon/profileIcon";
 
 interface PropsInterface {
   isPrivate: boolean;
 }
 
 function AppBar({ isPrivate }: PropsInterface) {
-  const { setUserContext } = useContext(UserContext);
+  const { userId, username, profilePicture, setUserContext } = useContext(
+    UserContext
+  );
 
   return (
     <div className="AppBar">
@@ -24,9 +27,7 @@ function AppBar({ isPrivate }: PropsInterface) {
             <Link to="/">
               <HomeIcon />
             </Link>
-            <Link to="/Toto">
-              <span>my profile</span>
-            </Link>
+            <ProfileIcon user={{ id: userId, profilePicture, username }} />
             <button onClick={() => setUserContext(false)}>
               delete userContext
             </button>
