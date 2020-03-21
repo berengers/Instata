@@ -1,6 +1,7 @@
 @import "../../Scss/var";
 
 .PostFeed {
+  max-width: $feed-post-width;
   background: white;
   border: 1px solid #dedede;
 }
@@ -27,8 +28,8 @@ $animation-duration: 1.6s;
 }
 
 .PostFeed-imageContainer {
-  width: $feed-post-width;
-  height: $feed-post-width;
+  position: relative;
+  padding-top: 100%;
   background-color: #ddd;
 
   @include background-gradient;
@@ -38,4 +39,38 @@ $animation-duration: 1.6s;
 
 .PostFeed-image {
   width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+
+.PostFeed-actions,
+.PostFeed-description,
+.PostFeed-createdAt,
+.PostFeed-countLikes {
+  padding: 0 16px;
+}
+
+.PostFeed-actions {
+  & > * {
+    width: 24px !important;
+    height: 24px !important;
+    margin: 8px 8px 8px 0;
+    cursor: pointer;
+  }
+}
+
+.PostFeed-countLikes {
+  margin-bottom: 8px;
+}
+
+.PostFeed-createdAt {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  color: grey;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
 }

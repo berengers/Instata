@@ -12,6 +12,8 @@ const GET_FEED = gql`
       id
       media
       description
+      liked
+      likesCount
       createdAt
       user {
         id

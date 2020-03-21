@@ -4,3 +4,8 @@
 
   & > :first-child { margin-right: 10px }
 }
+
+.PostHeader-content {
+  display: flex;
+  align-items: center;
+}

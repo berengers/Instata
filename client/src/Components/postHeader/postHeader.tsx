@@ -8,7 +8,7 @@ function PostHeader({ user }: { user: IUser }) {
   return (
     <div className="PostHeader">
       <ProfileIcon user={user} />
-      <div>
+      <div className="PostHeader-content">
         <strong>{user.username}</strong>
       </div>
     </div>

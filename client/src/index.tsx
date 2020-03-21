@@ -11,7 +11,7 @@ import {
   CreateUserContext
 } from "./Components/context/userContext";
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: "http://localhost:4000/",
   request: operation => {
     operation.setContext({

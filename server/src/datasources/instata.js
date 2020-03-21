@@ -36,25 +36,10 @@ class InstataAPI extends DataSource {
     if (!this.context.user.id) this._forbiddenError();
 
     const users = await this.store.UserUser.findAll({
-      where: { userFollowerId: this.context.user.id },
-      order: [
-        [
-          { model: this.store.User, as: "userFollow" },
-          { model: this.store.Post },
-          "createdAt",
-          "DESC"
-        ]
-      ],
-      include: [
-        {
-          model: this.store.User,
-          as: "userFollow",
-          include: [{ model: this.store.Post }]
-        }
-      ]
+      where: { userFollowerId: this.context.user.id }
     });
 
-    const usersId = users.map(user => user.userFollow.id);
+    const usersId = users.map(user => user.userId);
 
     return this.store.Post.findAll({
       limit,
@@ -85,7 +70,9 @@ class InstataAPI extends DataSource {
   async deletePostLike(postId) {
     if (!this.context.user.id) this._forbiddenError();
 
-    const like = await this.store.Like.findOne({ where: { postId } });
+    const like = await this.store.Like.findOne({
+      where: { postId, userId: this.context.user.id }
+    });
     await like.destroy();
     return this.store.Post.findOne({ where: { id: postId } });
   }
