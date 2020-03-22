@@ -1,23 +1,10 @@
-import React, { useState } from "react";
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import React from "react";
 import { format } from "timeago.js";
 
 import PostHeader from "Components/postHeader/postHeader";
 import "./postFeed.scss";
 import { IUser } from "Components/profileIcon/profileIcon";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-
-const TOGGLE_POST_LIKE = gql`
-  mutation togglePostLike($postId: ID!) {
-    togglePostLike(postId: $postId) {
-      id
-      liked
-      likesCount
-    }
-  }
-`;
+import LikeButton from "Components/buttons/likeButton/likeButton";
 
 export interface IPost {
   id: number;
@@ -31,13 +18,6 @@ export interface IPost {
 
 function PostFeed({ post }: { post: IPost }) {
   const { user } = post;
-  const [liked, setLiked] = useState(post.liked);
-  const [togglePostLike] = useMutation(TOGGLE_POST_LIKE);
-
-  const toggleLike = async () => {
-    setLiked(!liked);
-    await togglePostLike({ variables: { postId: post.id } });
-  };
 
   return (
     <div className="PostFeed">
@@ -50,11 +30,7 @@ function PostFeed({ post }: { post: IPost }) {
         />
       </div>
       <div className="PostFeed-actions">
-        {liked ? (
-          <FavoriteIcon color="error" onClick={toggleLike} />
-        ) : (
-          <FavoriteBorderIcon onClick={toggleLike} />
-        )}
+        <LikeButton postId={post.id} liked={post.liked} />
       </div>
       <div className="PostFeed-countLikes text-bold">
         {post.likesCount} {post.likesCount > 1 ? "likes" : "like"}

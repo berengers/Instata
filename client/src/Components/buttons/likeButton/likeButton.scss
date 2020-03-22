@@ -1,0 +1,16 @@
+.LikeButton-transition-container {
+  transition: .3s ease-in-out;
+
+  &.entered,
+  &.exited {
+    transform: scale(1);
+  }
+
+  &.entering,
+  &.exiting {
+    transform: scale(1.3);
+  }
+}
+
+
+
