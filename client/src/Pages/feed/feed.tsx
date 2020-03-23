@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 
 import PostFeed from "Components/postFeed/postFeed";
+import Sidebar from "Components/sideBarFeed/sideBarFeed";
 import { IPost } from "Components/postFeed/postFeed";
 import "./feed.scss";
 
@@ -42,7 +43,7 @@ function Feed() {
         ))}
       </div>
       <aside className="Feed-sidebar">
-        <div>Some user data</div>
+        <Sidebar />
       </aside>
     </div>
   );

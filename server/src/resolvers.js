@@ -57,9 +57,7 @@ module.exports = {
       const user = await dataSources.instataAPI.getUser({ email });
       return {
         token,
-        userId: user.id,
-        username: user.username,
-        profilePicture: user.profilePicture
+        user
       };
     },
     addFollow: async (_, { userId }, { dataSources }) => {

@@ -11,9 +11,12 @@ const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
-      userId
-      username
-      profilePicture
+      user {
+        id
+        username
+        name
+        profilePicture
+      }
     }
   }
 `;
@@ -46,9 +49,10 @@ function Login() {
       localStorage.setItem("token", login.token as string);
       setUserContext(
         true,
-        login.userId as number,
-        login.username as string,
-        login.profilePicture as string
+        login.user.id as number,
+        login.user.username as string,
+        login.user.name as string,
+        login.user.profilePicture as string
       );
     }
   });

@@ -4,11 +4,13 @@ interface IUserContext {
   isLogged: boolean;
   userId: number;
   username: string;
+  name: string;
   profilePicture?: string;
   setUserContext: (
     isLogged: boolean,
     userId?: number,
     username?: string,
+    name?: string,
     profilePicture?: string
   ) => void;
 }
@@ -25,6 +27,7 @@ export const CreateUserContext = (): IUserContext => {
   const [username, setUsername] = useState(
     contextLocal ? contextLocal.username : ""
   );
+  const [name, setName] = useState(contextLocal ? contextLocal.name : "");
   const [profilePicture, setProfilePicture] = useState(
     contextLocal ? contextLocal.profilePicture : ""
   );
@@ -33,6 +36,7 @@ export const CreateUserContext = (): IUserContext => {
     isLogged: boolean,
     userId?: number,
     username?: string,
+    name?: string,
     profilePicture?: string
   ) => {
     setIsLogged(isLogged);
@@ -40,15 +44,17 @@ export const CreateUserContext = (): IUserContext => {
     if (isLogged) {
       if (userId) setUserId(userId);
       if (username) setUsername(username);
+      if (name) setName(name);
       if (profilePicture) setProfilePicture(profilePicture);
 
       localStorage.setItem(
         "userContext",
-        JSON.stringify({ isLogged, userId, username, profilePicture })
+        JSON.stringify({ isLogged, userId, username, name, profilePicture })
       );
     } else {
       setUserId(null);
       setUsername("");
+      setName("");
       setProfilePicture("");
       localStorage.removeItem("userContext");
     }
@@ -58,6 +64,7 @@ export const CreateUserContext = (): IUserContext => {
     isLogged,
     userId,
     username,
+    name,
     profilePicture,
     setUserContext
   };

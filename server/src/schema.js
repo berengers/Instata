@@ -16,9 +16,7 @@ const typeDefs = gql`
 
   type Login {
     token: String!
-    userId: Int!
-    username: String!
-    profilePicture: String
+    user: PublicUser!
   }
 
   type Post {
