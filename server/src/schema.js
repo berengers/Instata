@@ -8,10 +8,10 @@ const typeDefs = gql`
 
   type Like {
     id: ID!
-    user: User!
+    user: PublicUser!
     post: Post!
-    createdAt: Date
-    updatedAt: Date
+    createdAt: Date!
+    updatedAt: Date!
   }
 
   type Login {
@@ -26,29 +26,27 @@ const typeDefs = gql`
     description: String
     media: String!
     liked: Boolean!
-    likes: [Like]
-    likesCount: Int
-    user: User!
-    createdAt: Date
-    updatedAt: Date
+    likes: [Like]!
+    likesCount: Int!
+    user: PublicUser!
+    createdAt: Date!
+    updatedAt: Date!
   }
 
-  type User {
+  type PublicUser {
     id: ID!
-    email: String!
     username: String!
     name: String!
     description: String
     profilePicture: String
-    likes: [Like]
-    follows: [User]
+    follows: [PublicUser]!
     followsCount: Int!
-    followers: [User] ## create an other type without personal data or limit with a code
+    followers: [PublicUser]!
     followersCount: Int!
     posts: [Post]!
     postsCount: Int!
-    createdAt: Date
-    updatedAt: Date
+    createdAt: Date!
+    updatedAt: Date!
   }
 
   ########## INPUT ###########
@@ -56,26 +54,26 @@ const typeDefs = gql`
   input PostInput {
     description: String
     media: String!
-    createdAt: Date
-    updatedAt: Date
+    createdAt: Date!
+    updatedAt: Date!
   }
 
   ########## QUERY ###########
 
   type Query {
-    user(id: ID, username: String): User
-    post(id: ID!): Post
-    posts(userId: ID): [Post]
-    feed(limit: Int, offset: Int): [Post]
+    user(id: ID, username: String): PublicUser!
+    post(id: ID!): Post!
+    posts(userId: ID): [Post]!
+    feed(limit: Int, offset: Int): [Post]!
   }
 
   ########## MUTATION ###########
 
   type Mutation {
-    addFollow(userId: ID!): Boolean
-    createPost(post: PostInput!): Post
-    togglePostLike(postId: ID!): Post
-    login(email: String!, password: String!): Login
+    addFollow(userId: ID!): Boolean!
+    createPost(post: PostInput!): Post!
+    togglePostLike(postId: ID!): Post!
+    login(email: String!, password: String!): Login!
   }
 `;
 

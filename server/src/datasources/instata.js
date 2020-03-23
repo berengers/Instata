@@ -106,7 +106,10 @@ class InstataAPI extends DataSource {
   async getPost(id) {
     if (!this.context.user.id) return this._forbiddenError();
 
-    const post = await this.store.Post.findOne({ where: { id } });
+    const post = await this.store.Post.findOne({
+      where: { id },
+      include: [this.store.User]
+    });
 
     if (!post) throw new Error("No content");
 
@@ -123,10 +126,12 @@ class InstataAPI extends DataSource {
   }
 
   async getFollowed(userId) {
-    return this.store.UserUser.findAll({
+    const res = await this.store.UserUser.findAll({
       where: { userFollowerId: userId },
       include: [{ model: this.store.User, as: "userFollow" }]
     });
+
+    return res.map(el => el.userFollow);
   }
 
   async getFollowedCount(userId) {
@@ -134,10 +139,12 @@ class InstataAPI extends DataSource {
   }
 
   async getFollowers(userId) {
-    return this.store.UserUser.findAll({
+    const res = await this.store.UserUser.findAll({
       where: { userId: userId },
       include: [{ model: this.store.User, as: "userFollower" }]
     });
+
+    return res.map(el => el.userFollower);
   }
 
   async getFollowersCount(userId) {
@@ -149,11 +156,10 @@ class InstataAPI extends DataSource {
 
     if (!userId) this._forbiddenError();
 
-    const posts = await this.store.Post.findAll({ where: { userId } });
-
-    if (!posts) throw new Error("Strange");
-
-    return posts;
+    return this.store.Post.findAll({
+      where: { userId },
+      include: { model: this.store.User }
+    });
   }
 
   async getPostsCount(userId) {

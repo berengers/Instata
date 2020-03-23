@@ -4,40 +4,13 @@ module.exports = {
       return dataSources.instataAPI.getFeedPosts({ limit, offset });
     },
     user: async (_, { id, username }, { dataSources }) => {
-      const user = await dataSources.instataAPI.getUser({ id, username });
-      return {
-        id: user.id,
-        email: user.email,
-        username: user.username,
-        name: user.name,
-        description: user.description,
-        profilePicture: user.profilePicture,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt
-      };
+      return dataSources.instataAPI.getUser({ id, username });
     },
     post: async (_, { id }, { dataSources }) => {
-      const post = await dataSources.instataAPI.getPost(id);
-
-      if (!post) throw new Error("No post");
-
-      return {
-        id: post.id,
-        description: post.description,
-        media: post.media,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt
-      };
+      return dataSources.instataAPI.getPost(id);
     },
     posts: async (_, { userId }, { dataSources }) => {
-      const posts = await dataSources.instataAPI.getPosts(userId);
-      return posts.map(post => ({
-        id: post.id,
-        description: post.description,
-        media: post.media,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt
-      }));
+      return dataSources.instataAPI.getPosts(userId);
     }
   },
   Post: {
@@ -49,7 +22,7 @@ module.exports = {
       const likes = await dataSources.instataAPI.getLikes(post);
       return likes.map(like => ({
         id: like.id,
-        user: like.user, // TODO - Add service for format/validate data
+        user: like.user,
         post,
         createdAt: like.createdAt
       }));
@@ -58,47 +31,21 @@ module.exports = {
       return dataSources.instataAPI.getLikesCount(post);
     }
   },
-  User: {
+  PublicUser: {
     follows: async (user, __, { dataSources }) => {
-      const followed = await dataSources.instataAPI.getFollowed(user.id);
-      return followed.map(join => ({
-        id: join.userFollow.id,
-        username: join.userFollow.username,
-        name: join.userFollow.name,
-        description: join.userFollow.description,
-        profilePicture: join.userFollow.profilePicture,
-        createdAt: join.userFollow.createdAt,
-        updatedAt: join.userFollow.updatedAt
-      }));
+      return dataSources.instataAPI.getFollowed(user.id);
     },
     followsCount: async (user, __, { dataSources }) => {
       return dataSources.instataAPI.getFollowedCount(user.id);
     },
     followers: async (user, __, { dataSources }) => {
-      const followers = await dataSources.instataAPI.getFollowers(user.id);
-      return followers.map(join => ({
-        id: join.userFollower.id,
-        username: join.userFollower.username,
-        name: join.userFollower.name,
-        description: join.userFollower.description,
-        profilePicture: join.userFollower.profilePicture,
-        createdAt: join.userFollower.createdAt,
-        updatedAt: join.userFollower.updatedAt
-      }));
+      return dataSources.instataAPI.getFollowers(user.id);
     },
     followersCount: async (user, __, { dataSources }) => {
       return dataSources.instataAPI.getFollowersCount(user.id);
     },
     posts: async (user, __, { dataSources }) => {
-      const posts = await dataSources.instataAPI.getPosts(user.id);
-
-      return posts.map(post => ({
-        id: post.id,
-        description: post.description,
-        media: post.media,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt
-      }));
+      return dataSources.instataAPI.getPosts(user.id);
     },
     postsCount: async (user, __, { dataSources }) => {
       return dataSources.instataAPI.getPostsCount(user.id);
@@ -123,25 +70,14 @@ module.exports = {
     togglePostLike: async (_, { postId }, { dataSources }) => {
       const liked = await dataSources.instataAPI.postAlreadyLiked(postId);
 
-      let post = null;
-
       if (liked) {
-        post = await dataSources.instataAPI.deletePostLike(postId);
-      } else {
-        post = await dataSources.instataAPI.addPostLike(postId);
+        return dataSources.instataAPI.deletePostLike(postId);
       }
 
-      return post; // TODO - use service to format data
+      return dataSources.instataAPI.addPostLike(postId);
     },
     createPost: async (_, { post }, { dataSources }) => {
-      const newPost = await dataSources.instataAPI.createPost(post);
-      return {
-        id: newPost.id,
-        description: newPost.description,
-        media: newPost.media,
-        createdAt: newPost.createdAt,
-        updatedAt: newPost.updatedAt
-      };
+      return dataSources.instataAPI.createPost(post);
     }
   }
 };
