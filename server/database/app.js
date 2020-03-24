@@ -1,28 +1,10 @@
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const express = require("express");
 const logger = require("pino")();
-const loggingMiddleware = require("express-pino-logger")();
 const Sequelize = require("sequelize");
 
 const config = require("./config");
 
 module.exports.createStore = () => {
   const db = new Sequelize(config.DB);
-
-  db.sync({ force: false }).then(() => {
-    logger.info("database tables created");
-  });
-
-  var app = express();
-
-  app.use(cors());
-  app.use(loggingMiddleware);
-  app.use(bodyParser.json());
-
-  app.listen(config.PORT, () => {
-    logger.info(`http server listening on port ${config.PORT}`);
-  });
 
   const User = db.define("users", {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
@@ -103,6 +85,10 @@ module.exports.createStore = () => {
   Token.belongsTo(User);
   User.hasMany(Post);
   Post.belongsTo(User);
+
+  db.sync({ force: false }).then(() => {
+    logger.info("database tables created");
+  });
 
   return { db, User, UserUser, Token, Like, Post };
 };
