@@ -12,7 +12,7 @@ import {
 } from "./Components/context/userContext";
 
 export const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "/api",
   request: operation => {
     operation.setContext({
       headers: { authorization: localStorage.getItem("token") }
