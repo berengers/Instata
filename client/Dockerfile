@@ -2,6 +2,7 @@ FROM node:10 AS build
 
 ADD . /app
 WORKDIR /app
+RUN npm install
 RUN npm run build
 
 FROM nginx:stable
