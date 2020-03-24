@@ -1,6 +1,6 @@
 ## Infrastructure Schema
 
-![infrastructure schema](https://mermaid-js.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggVERcbiAgQShDbGllbnQpXG4gIEIoTmdpbnggTG9hZCBCYWxhbmNlcjxici8-bG9jYWxob3N0OjgwODApXG4gIEMoTm9kZWpzIFNlcnZlcjxici8-bG9jYWxob3N0OjQwMDApXG4gIEQoTmdpbnggU3RhdGljIFNlcnZlcjxici8-bG9jYWxob3N0OjgwMDApXG4gIEUoUG9zdGdyZXNxbDxici8-bG9jYWxob3N0OjU0MzIpXG5cbiAgQSAtLT4gQlxuICBCIC0tPiB8IC9hcGkgfCBDXG4gIEIgLS0-IHwgLyB8IERcbiAgQyAtLT4gRVxuIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+![infrastructure schema](infra.png)
 
 ## Run full stack
 
