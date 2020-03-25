@@ -1,16 +1,19 @@
 const {ApolloServer} = require('apollo-server');
+const config = require("./config");
+const createStore = require("./persistence/store")
+const registerModels = require("./persistence/models")
 
-const { createStore } = require('../database/app');
 const InstataAPI = require('./datasources/instata');
 const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
-const store = createStore();
+const store = createStore(config.DB)
+const models = registerModels(store)
 
 const server = new ApolloServer({
   context: async ({ req }) => {
     const token = req.headers && req.headers.authorization || '';
-    const res = await store.Token.findOne({ where: { token } });
+    const res = await models.Token.findOne({ where: { token } });
 
     if (res) {
       return { user: { id: res.userId } }
@@ -21,9 +24,12 @@ const server = new ApolloServer({
 
   typeDefs,
   resolvers,
-  dataSources: () => ({ instataAPI: new InstataAPI({ store }) })
+  dataSources: () => ({ instataAPI: new InstataAPI({ models }) })
 });
 
-server.listen().then(({url}) => {
+server.listen({
+  host: config.HOST,
+  port: config.PORT 
+}).then(({url}) => {
   console.log(`🚀 Server ready at ${url}`);
 });
