@@ -7,16 +7,6 @@ import { SwitchTransition, Transition } from "react-transition-group";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import "./likeButton.scss";
 
-const TOGGLE_POST_LIKE = gql`
-  mutation togglePostLike($postId: ID!) {
-    togglePostLike(postId: $postId) {
-      id
-      liked
-      likesCount
-    }
-  }
-`;
-
 const SwitchLike: FunctionComponent<{ liked: boolean }> = ({
   children,
   liked
@@ -43,24 +33,28 @@ const SwitchLike: FunctionComponent<{ liked: boolean }> = ({
 interface ILikeButton {
   postId: number;
   liked: boolean;
+  onClick: (postId: number) => void;
 }
 
-function LikeButton({ postId, liked: initLiked }: ILikeButton) {
+function LikeButton({
+  postId,
+  liked: initLiked,
+  onClick: toggleLike
+}: ILikeButton) {
   const [liked, setLiked] = useState(initLiked);
-  const [togglePostLike] = useMutation(TOGGLE_POST_LIKE);
 
-  const toggleLike = async () => {
+  const toggle = () => {
     setLiked(!liked);
-    await togglePostLike({ variables: { postId: postId } });
+    toggleLike(postId);
   };
 
   return (
     <div className="LikeButton">
       <SwitchLike liked={liked}>
         {liked ? (
-          <FavoriteIcon color="error" onClick={toggleLike} />
+          <FavoriteIcon color="error" onClick={toggle} />
         ) : (
-          <FavoriteBorderIcon onClick={toggleLike} />
+          <FavoriteBorderIcon onClick={toggle} />
         )}
       </SwitchLike>
     </div>

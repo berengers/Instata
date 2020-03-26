@@ -2,9 +2,8 @@ import React from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 
-import PostFeed from "Components/postFeed/postFeed";
-import Sidebar from "Components/sideBarFeed/sideBarFeed";
-import { IPost } from "Components/postFeed/postFeed";
+import PostDetails from "Modules/post/postFeed/postDetails";
+import Sidebar from "Modules/feedSideBar/sideBarFeed";
 import "./feed.scss";
 
 const GET_FEED = gql`
@@ -25,6 +24,22 @@ const GET_FEED = gql`
   }
 `;
 
+export interface IFeedPostContract {
+  id: number;
+  media: string;
+  description?: string;
+  liked: boolean;
+  likesCount: number;
+  createdAt: string;
+  user: IFeedUserContract;
+}
+
+export interface IFeedUserContract {
+  id: number;
+  username: string;
+  profilePicture?: string;
+}
+
 function Feed() {
   const { loading, error, data } = useQuery(GET_FEED, {
     variables: { limit: 5 }
@@ -33,13 +48,13 @@ function Feed() {
   if (loading) return <div>Loading ...</div>;
   if (error) return <div>Error</div>;
 
-  const posts: IPost[] = data.feed;
+  const posts: Array<IFeedPostContract> = data.feed;
 
   return (
     <div className="Feed">
       <div className="Feed-posts">
         {posts.map(post => (
-          <PostFeed post={post} key={post.id} />
+          <PostDetails post={post} key={post.id} />
         ))}
       </div>
       <aside className="Feed-sidebar">

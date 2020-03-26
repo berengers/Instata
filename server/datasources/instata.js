@@ -104,8 +104,6 @@ class InstataAPI extends DataSource {
   }
 
   async getPost(id) {
-    if (!this.context.user.id) return this._forbiddenError();
-
     const post = await this.models.Post.findOne({
       where: { id },
       include: [this.models.User]

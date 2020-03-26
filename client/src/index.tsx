@@ -6,10 +6,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import "./index.scss";
 import App from "./app";
 import * as serviceWorker from "./serviceWorker";
-import {
-  UserContext,
-  CreateUserContext
-} from "./Components/context/userContext";
+import { UserContext, CreateUserContext } from "./Services/context/userContext";
 
 export const client = new ApolloClient({
   uri: "http://localhost:8080/api",

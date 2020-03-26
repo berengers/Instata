@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
-import { UserContext } from "Components/context/userContext";
+import { UserContext } from "Services/context/userContext";
 import "./login.scss";
 import illustration from "Static/login-image.png";
 import logo from "Static/instata-logo.png";

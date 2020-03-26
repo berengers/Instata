@@ -1,7 +1,9 @@
 import React from "react";
 import _chunk from "lodash/chunk";
 
-import PostPreview, { PostInterface } from "Components/postPreview/postPreview";
+import PostPreview, {
+  PostInterface
+} from "Modules/post/postPreview/postPreview";
 import "./postsList.scss";
 
 interface PropsInterface {

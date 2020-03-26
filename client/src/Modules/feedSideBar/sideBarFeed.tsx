@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { UserContext } from "Components/context/userContext";
+import { UserContext } from "Services/context/userContext";
 
-import ProfileIcon from "Components/profileIcon/profileIcon";
+import AvatarButton from "Lib/avatarButton/avatarButton";
 import "./sideBarFeed.scss";
 
 export default function Sidebar() {
@@ -10,9 +10,10 @@ export default function Sidebar() {
   return (
     <div className="SideBarFeed">
       <div className="SideBarFeed-row">
-        <ProfileIcon
-          user={{ id: userId, username, profilePicture }}
-          size="50px"
+        <AvatarButton
+          to={`/${username}`}
+          pictureLink={profilePicture}
+          pictureLabel={username}
         />
         <div className="SideBarFeed-text">
           <div className="text-bold">{username}</div>

@@ -3,9 +3,9 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useParams } from "react-router-dom";
 
-import UserHeader from "Components/user/userHeader/userHeader";
-import PostsList from "Components/postsList/postsList";
-import "./user.scss";
+import ProfileHeader from "Modules/profile/profileHeader/profileHeader";
+import PostsList from "Modules/post/postsList/postsList";
+import "./profile.scss";
 
 const GET_USER_HEADER = gql`
   query getUser($username: String) {
@@ -28,7 +28,7 @@ const GET_USER_HEADER = gql`
   }
 `;
 
-function User() {
+function Profile() {
   const { username } = useParams();
   const { loading, error, data } = useQuery(GET_USER_HEADER, {
     variables: { username }
@@ -41,13 +41,13 @@ function User() {
   const { user } = data;
 
   return (
-    <div className="User">
-      <div className="User-userHeader">
-        <UserHeader user={user} />
+    <div className="Profile">
+      <div className="Profile-profileHeader">
+        <ProfileHeader user={user} />
       </div>
       <PostsList posts={user.posts} />
     </div>
   );
 }
 
-export default User;
+export default Profile;

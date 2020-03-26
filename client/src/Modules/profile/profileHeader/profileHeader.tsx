@@ -1,13 +1,13 @@
 import React from "react";
 
 import svgSettings from "Static/settings.svg";
-import "./userHeader.scss";
+import "./profileHeader.scss";
 
 interface Props {
-  user: UserInformations;
+  user: UserInformation;
 }
 
-interface UserInformations {
+interface UserInformation {
   id: number;
   username: string;
   name: string;
@@ -18,32 +18,30 @@ interface UserInformations {
   postsCount: number;
 }
 
-function UserHeader({ user }: Props) {
+function ProfileHeader({ user }: Props) {
   return (
-    <header className="UserHeader">
-      <div className="UserHeader-profil_picture_container">
+    <header className="ProfileHeader">
+      <div className="ProfileHeader-profilPictureContainer">
         <img
-          className="UserHeader-profil_picture"
+          className="ProfileHeader-profilPicture"
           src={user.profilePicture}
           alt="profile"
         />
       </div>
-      <div className="UserHeader-informations">
+      <div className="ProfileHeader-information">
         <div className="display-row">
-          <div className="UserHeader-informations-nickname">
-            {user.username}
-          </div>
-          <div className="UserHeader-informations-set_profil text-bold">
+          <div className="ProfileHeader-username">{user.username}</div>
+          <div className="ProfileHeader-setProfile text-bold">
             Modifier le profile
           </div>
           <img
             src={svgSettings}
             alt="settings"
-            className="UserHeader-informations-settings"
+            className="ProfileHeader-settings"
           />
         </div>
 
-        <div className="UserHeader-informations-data">
+        <div className="ProfileHeader-information-data">
           <div>
             <span className="text-bold">{user.postsCount} </span>
             <span>publications</span>
@@ -58,10 +56,10 @@ function UserHeader({ user }: Props) {
           </div>
         </div>
 
-        <div className="UserHeader-informations-name text-bold">
+        <div className="ProfileHeader-information-name text-bold">
           {user.name}
         </div>
-        <div className="UserHeader-informations-description">
+        <div className="ProfileHeader-information-description">
           {user.description}
         </div>
       </div>
@@ -69,4 +67,4 @@ function UserHeader({ user }: Props) {
   );
 }
 
-export default UserHeader;
+export default ProfileHeader;

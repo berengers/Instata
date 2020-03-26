@@ -1,6 +1,6 @@
 @import "../../Scss/var";
 
-.User {
+.Profile {
   padding-top: 30px;
 
   @media only screen and (min-width: $breakpoint-sm) {
@@ -9,6 +9,6 @@
   }
 }
 
-.User-userHeader {
+.Profile-profileHeader {
   margin-bottom: 40px;
 }

@@ -1,31 +1,31 @@
-.UserHeader {
+.ProfileHeader {
   display: flex;
   font-size: 14px;
   line-height: 20px;
 }
 
-.UserHeader-profil_picture_container {
+.ProfileHeader-profilPictureContainer {
   flex: 1;
   margin-right: 30px;
   text-align: center;
 }
 
-.UserHeader-profil_picture {
+.ProfileHeader-profilPicture {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.UserHeader-informations {
+.ProfileHeader-information {
   flex: 2;
 }
 
-.UserHeader-informations-nickname {
+.ProfileHeader-username {
   font-size: 25px;
 }
 
-.UserHeader-informations-set_profil {
+.ProfileHeader-setProfile {
   border: 1px solid grey;
   border-radius: 5px;
   font-size: 13px;
@@ -34,17 +34,17 @@
   &:hover { cursor: pointer }
 }
 
-.UserHeader-informations-settings {
+.ProfileHeader-settings {
   margin-left: 13px;
 }
 
-.UserHeader-informations-data {
+.ProfileHeader-information-data {
   display: flex;
   & > * {
     margin-right: 20px;
   }
 }
 
-.UserHeader-informations-name {
+.ProfileHeader-information-name {
   margin-top: 25px;
 }

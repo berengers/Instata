@@ -1,6 +1,6 @@
-@import "../../Scss/var";
+@import "../../../Scss/var";
 
-.PostFeed {
+.PostDetails {
   max-width: $feed-post-width;
   background: white;
   border: 1px solid #dedede;
@@ -27,7 +27,7 @@ $animation-duration: 1.6s;
   }
 }
 
-.PostFeed-imageContainer {
+.PostDetails-imageContainer {
   position: relative;
   padding-top: 100%;
   background-color: #ddd;
@@ -37,7 +37,7 @@ $animation-duration: 1.6s;
 }
 
 
-.PostFeed-image {
+.PostDetails-image {
   width: 100%;
   position: absolute;
   top: 0;
@@ -46,14 +46,14 @@ $animation-duration: 1.6s;
 }
 
 
-.PostFeed-actions,
-.PostFeed-description,
-.PostFeed-createdAt,
-.PostFeed-countLikes {
+.PostDetails-actions,
+.PostDetails-description,
+.PostDetails-createdAt,
+.PostDetails-countLikes {
   padding: 0 16px;
 }
 
-.PostFeed-actions {
+.PostDetails-actions {
   & > * {
     width: 24px !important;
     height: 24px !important;
@@ -62,11 +62,11 @@ $animation-duration: 1.6s;
   }
 }
 
-.PostFeed-countLikes {
+.PostDetails-countLikes {
   margin-bottom: 8px;
 }
 
-.PostFeed-createdAt {
+.PostDetails-createdAt {
   padding-top: 12px;
   padding-bottom: 12px;
   color: grey;

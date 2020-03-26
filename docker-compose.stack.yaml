@@ -6,7 +6,18 @@ services:
     restart: always
     network_mode: host
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
+  pgweb:
+    container_name: pgweb  # optional
+    restart: always  # optional
+    image: sosedoff/pgweb
+    network_mode: host
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
+    depends_on:
+      - postgres  # my database container is called postgres, not db
 
   nginx:
     image: nginx:stable

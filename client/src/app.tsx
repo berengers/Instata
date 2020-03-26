@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { client } from "./index";
-import { UserContext } from "Components/context/userContext";
+import { UserContext } from "Services/context/userContext";
 import Feed from "Pages/feed/feed";
 import Login from "Pages/login/login";
-import User from "Pages/user/user";
-import AppBar from "Components/appBar/appBar";
+import Profile from "Pages/profile/profile";
+import AppBar from "Modules/app/appBar/appBar";
 import "./app.scss";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
         <div className="App-container">
           <Switch>
             <Route exact path="/:username">
-              <User />
+              <Profile />
             </Route>
             <Route path="/">{isLogged ? <Feed /> : <Login />}</Route>
           </Switch>
