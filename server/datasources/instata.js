@@ -156,7 +156,7 @@ class InstataAPI extends DataSource {
 
     return this.models.Post.findAll({
       where: { userId },
-      include: { model: this.store.User }
+      include: { model: this.models.User }
     });
   }
 

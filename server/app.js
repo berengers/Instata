@@ -19,10 +19,10 @@ store.sync({ force: false }).then(() => {
 const server = new ApolloServer({
   context: async ({ req }) => {
     const token = (req.headers && req.headers.authorization) || "";
-    const res = await models.Token.findOne({ where: { token } });
+    const user = await models.Token.findOne({ where: { token } });
 
-    if (res) {
-      return { user: { id: res.userId } };
+    if (user) {
+      return { user: { id: user.userId } };
     }
 
     return { user: {} };

@@ -7,7 +7,7 @@ import Sidebar from "Modules/feedSideBar/sideBarFeed";
 import "./feed.scss";
 
 const GET_FEED = gql`
-  {
+  query feed {
     feed {
       id
       media

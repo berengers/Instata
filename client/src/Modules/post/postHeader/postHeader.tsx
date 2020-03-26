@@ -1,6 +1,6 @@
 import React from "react";
 
-import AvatarButton from "Lib/avatarButton/avatarButton";
+import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
 import "./postHeader.scss";
 import { IFeedUserContract } from "Pages/feed/feed";
 

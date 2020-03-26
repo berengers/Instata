@@ -1,6 +1,4 @@
 import React, { FunctionComponent, useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { SwitchTransition, Transition } from "react-transition-group";
 
