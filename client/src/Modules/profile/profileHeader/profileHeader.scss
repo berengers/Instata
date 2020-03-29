@@ -21,6 +21,16 @@
   flex: 2;
 }
 
+.ProfileHeader-information-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+
+  & > * {
+    margin-right: 20px;
+  }
+}
+
 .ProfileHeader-username {
   font-size: 25px;
 }

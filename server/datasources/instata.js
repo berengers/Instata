@@ -145,6 +145,16 @@ class InstataAPI extends DataSource {
     return res.map(el => el.userFollower);
   }
 
+  async isFollowed(userId) {
+    if (!this.context.user.id) return null;
+
+    const row = await this.models.UserUser.findOne({
+      where: { userFollowerId: this.context.user.id, userId }
+    });
+
+    return Boolean(row);
+  }
+
   async getFollowersCount(userId) {
     return this.models.UserUser.count({ where: { userId } });
   }
@@ -173,10 +183,21 @@ class InstataAPI extends DataSource {
   async addFollow(userId) {
     if (!this.context.user.id) this._forbiddenError();
 
-    return this.models.UserUser.create({
+    await this.models.UserUser.create({
       userId,
       userFollowerId: this.context.user.id
     });
+
+    return this.models.User.findOne({ where: { id: userId } });
+  }
+
+  async deleteFollow(userId) {
+    if (!this.context.user.id) this._forbiddenError();
+
+    const row = await this.models.UserUser.findOne({ where: { userId } });
+    await row.destroy();
+
+    return this.models.User.findOne({ where: { id: userId } });
   }
 }
 

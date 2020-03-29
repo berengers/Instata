@@ -3,6 +3,9 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
-$app-max-width: 935px;
+:root {
+  --size-app-max-width: 935px;
+  --size-feed-post-width: 614px;
 
-$feed-post-width: 614px;
+  --color-blue: #007bcb;
+}

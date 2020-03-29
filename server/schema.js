@@ -37,6 +37,7 @@ const typeDefs = gql`
     name: String!
     description: String
     profilePicture: String
+    isFollowed: Boolean
     follows: [PublicUser]!
     followsCount: Int!
     followers: [PublicUser]!
@@ -68,7 +69,7 @@ const typeDefs = gql`
   ########## MUTATION ###########
 
   type Mutation {
-    addFollow(userId: ID!): Boolean!
+    toggleFollow(userId: ID!): PublicUser!
     createPost(post: PostInput!): Post!
     togglePostLike(postId: ID!): Post!
     login(email: String!, password: String!): Login!

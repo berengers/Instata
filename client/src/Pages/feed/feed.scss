@@ -21,7 +21,7 @@
 
 .Feed-sidebar {
   display: none;
-  width: calc(#{$app-max-width} - #{$feed-post-width} - 28px);
+  width: calc(var(--size-app-max-width) - var(--size-feed-post-width) - 28px);
 
   @media only screen and (min-width: $breakpoint-lg) {
     display: block;

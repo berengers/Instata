@@ -1,24 +1,10 @@
 import React from "react";
 
-import svgSettings from "Static/settings.svg";
 import "./profileHeader.scss";
+import { IUserContract } from "Pages/profile/profile";
+import ProfileHeaderButtons from "Modules/profile/profilHeaderButtons/profileHeaderButtons";
 
-interface Props {
-  user: UserInformation;
-}
-
-interface UserInformation {
-  id: number;
-  username: string;
-  name: string;
-  description?: string;
-  profilePicture?: string;
-  followersCount: number;
-  followsCount: number;
-  postsCount: number;
-}
-
-function ProfileHeader({ user }: Props) {
+function ProfileHeader({ user }: { user: IUserContract }) {
   return (
     <header className="ProfileHeader">
       <div className="ProfileHeader-profilPictureContainer">
@@ -29,30 +15,23 @@ function ProfileHeader({ user }: Props) {
         />
       </div>
       <div className="ProfileHeader-information">
-        <div className="display-row">
+        <div className="ProfileHeader-information-header">
           <div className="ProfileHeader-username">{user.username}</div>
-          <div className="ProfileHeader-setProfile text-bold">
-            Modifier le profile
-          </div>
-          <img
-            src={svgSettings}
-            alt="settings"
-            className="ProfileHeader-settings"
-          />
+          <ProfileHeaderButtons user={user} />
         </div>
 
         <div className="ProfileHeader-information-data">
           <div>
             <span className="text-bold">{user.postsCount} </span>
-            <span>publications</span>
+            <span>posts</span>
           </div>
           <div>
             <span className="text-bold">{user.followersCount} </span>
-            <span>abonnés</span>
+            <span>followers</span>
           </div>
           <div>
             <span className="text-bold">{user.followsCount} </span>
-            <span>abonnements</span>
+            <span>following</span>
           </div>
         </div>
 

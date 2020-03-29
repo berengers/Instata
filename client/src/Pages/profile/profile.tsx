@@ -15,6 +15,7 @@ const GET_USER_HEADER = gql`
       name
       description
       profilePicture
+      isFollowed
       followersCount
       followsCount
       postsCount
@@ -28,6 +29,25 @@ const GET_USER_HEADER = gql`
   }
 `;
 
+export interface IUserContract {
+  readonly id: number;
+  readonly username: string;
+  readonly name: string;
+  readonly description: string;
+  readonly profilePicture: string;
+  readonly isFollowed?: boolean;
+  readonly followersCount: number;
+  readonly followsCount: number;
+  readonly postsCount: number;
+  readonly posts: [IUserPostContract];
+}
+
+export interface IUserPostContract {
+  readonly id: number;
+  readonly media: string;
+  readonly likesCount: number;
+}
+
 function Profile() {
   const { username } = useParams();
   const { loading, error, data } = useQuery(GET_USER_HEADER, {
@@ -38,7 +58,7 @@ function Profile() {
   if (error) return <p>ERROR: {error.message}</p>;
   if (data === undefined) return <p>ERROR</p>;
 
-  const { user } = data;
+  const { user }: { user: IUserContract } = data;
 
   return (
     <div className="Profile">

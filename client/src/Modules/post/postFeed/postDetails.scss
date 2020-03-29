@@ -1,7 +1,5 @@
-@import "../../../Scss/var";
-
 .PostDetails {
-  max-width: $feed-post-width;
+  max-width: var(--size-feed-post-width);
   background: white;
   border: 1px solid #dedede;
 }

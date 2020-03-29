@@ -44,6 +44,9 @@ module.exports = {
     followersCount: async (user, __, { dataSources }) => {
       return dataSources.instataAPI.getFollowersCount(user.id);
     },
+    isFollowed: async (user, __, { dataSources }) => {
+      return dataSources.instataAPI.isFollowed(user.id);
+    },
     posts: async (user, __, { dataSources }) => {
       return dataSources.instataAPI.getPosts(user.id);
     },
@@ -60,10 +63,14 @@ module.exports = {
         user
       };
     },
-    addFollow: async (_, { userId }, { dataSources }) => {
-      const done = await dataSources.instataAPI.addFollow(userId);
+    toggleFollow: async (_, { userId }, { dataSources }) => {
+      const isFollowed = await dataSources.instataAPI.isFollowed(userId);
 
-      return Boolean(done);
+      if (isFollowed) {
+        return dataSources.instataAPI.deleteFollow(userId);
+      }
+
+      return dataSources.instataAPI.addFollow(userId);
     },
     togglePostLike: async (_, { postId }, { dataSources }) => {
       const liked = await dataSources.instataAPI.postAlreadyLiked(postId);
