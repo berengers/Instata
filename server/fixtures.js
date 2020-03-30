@@ -1,8 +1,12 @@
 const config = require("./config");
 const db = require("./persistence/store")(config.DB);
-const { User, UserUser, Token, Post, Like } = require("./persistence/models")(
-  db
-);
+const {
+  User,
+  UserSubscription,
+  Token,
+  Post,
+  Like
+} = require("./persistence/models")(db);
 
 const users = [
   {
@@ -39,12 +43,12 @@ const users = [
   }
 ];
 
-const userUser = [
-  { userFollowerId: 1, userId: 2 },
-  { userFollowerId: 1, userId: 4 },
-  { userFollowerId: 2, userId: 1 },
-  { userFollowerId: 3, userId: 1 },
-  { userFollowerId: 4, userId: 1 }
+const userSubscriptions = [
+  { userFollowerId: 1, userFollowingId: 2 },
+  { userFollowerId: 1, userFollowingId: 4 },
+  { userFollowerId: 2, userFollowingId: 1 },
+  { userFollowerId: 3, userFollowingId: 1 },
+  { userFollowerId: 4, userFollowingId: 1 }
 ];
 
 const authTokens = [{ token: "tom_token", userId: 1 }];
@@ -99,6 +103,31 @@ const posts = [
     description: "post 2 - user 2",
     media: "https://picsum.photos/id/1032/800/800",
     userId: "2"
+  },
+  {
+    description: "post - user 3",
+    media: "https://picsum.photos/id/1027/800/800",
+    userId: "3"
+  },
+  {
+    description: "post - user 3",
+    media: "https://picsum.photos/id/1028/800/800",
+    userId: "3"
+  },
+  {
+    description: "post - user 3",
+    media: "https://picsum.photos/id/1029/800/800",
+    userId: "3"
+  },
+  {
+    description: "post - user 3",
+    media: "https://picsum.photos/id/1031/800/800",
+    userId: "3"
+  },
+  {
+    description: "post - user 3",
+    media: "https://picsum.photos/id/1032/800/800",
+    userId: "3"
   }
 ];
 
@@ -110,7 +139,7 @@ const likes = [
 
 db.sync({ force: true })
   .then(() => User.bulkCreate(users))
-  .then(() => UserUser.bulkCreate(userUser))
+  .then(() => UserSubscription.bulkCreate(userSubscriptions))
   .then(() => Token.bulkCreate(authTokens))
   .then(() => Post.bulkCreate(posts))
   .then(() => Like.bulkCreate(likes))

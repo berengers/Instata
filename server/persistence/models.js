@@ -11,8 +11,8 @@ module.exports = db => {
     profilePicture: { type: Sequelize.STRING, allowNull: true }
   });
 
-  const UserUser = db.define(
-    "userUser",
+  const UserSubscription = db.define(
+    "userSubscriptions",
     {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       userFollowerId: {
@@ -20,7 +20,7 @@ module.exports = db => {
         allowNull: false,
         references: { model: "user", key: "id" }
       },
-      userId: {
+      userFollowingId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "user", key: "id" }
@@ -51,25 +51,25 @@ module.exports = db => {
   });
 
   User.belongsToMany(User, {
-    through: "userUser",
-    foreignKey: "userId",
-    as: "follower"
+    through: "userSubscriptions",
+    foreignKey: "userFollowingId",
+    as: "userFollowing"
   });
 
-  UserUser.belongsTo(User, {
+  UserSubscription.belongsTo(User, {
     foreignKey: "userFollowerId",
     as: "userFollower"
   });
 
-  UserUser.belongsTo(User, {
-    foreignKey: "userId",
-    as: "userFollow"
+  UserSubscription.belongsTo(User, {
+    foreignKey: "userFollowingId",
+    as: "userFollowing"
   });
 
   User.belongsToMany(User, {
-    through: "userUser",
+    through: "userSubscriptions",
     foreignKey: "userFollowerId",
-    as: "user"
+    as: "userFollower"
   });
 
   User.belongsToMany(Like, {
@@ -98,5 +98,5 @@ module.exports = db => {
   User.hasMany(Post);
   Post.belongsTo(User);
 
-  return { User, UserUser, Token, Like, Post };
+  return { User, UserSubscription, Token, Like, Post };
 };

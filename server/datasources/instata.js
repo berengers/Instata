@@ -35,11 +35,11 @@ class InstataAPI extends DataSource {
   async getFeedPosts({ limit = 10, offset = 0 }) {
     if (!this.context.user.id) this._forbiddenError();
 
-    const users = await this.models.UserUser.findAll({
+    const users = await this.models.UserSubscription.findAll({
       where: { userFollowerId: this.context.user.id }
     });
 
-    const usersId = users.map(user => user.userId);
+    const usersId = users.map(user => user.userFollowingId);
 
     return this.models.Post.findAll({
       limit,
@@ -124,39 +124,41 @@ class InstataAPI extends DataSource {
   }
 
   async getFollowed(userId) {
-    const res = await this.models.UserUser.findAll({
+    const res = await this.models.UserSubscription.findAll({
       where: { userFollowerId: userId },
-      include: [{ model: this.models.User, as: "userFollow" }]
+      include: [{ model: this.models.User, as: "userFollowing" }]
     });
 
-    return res.map(el => el.userFollow);
+    return res.map(el => el.userFollowing);
   }
 
   async getFollowedCount(userId) {
-    return this.models.UserUser.count({ where: { userFollowerId: userId } });
+    return this.models.UserSubscription.count({
+      where: { userFollowerId: userId }
+    });
   }
 
-  async getFollowers(userId) {
-    const res = await this.models.UserUser.findAll({
-      where: { userId: userId },
+  async getFollowers(userFollowingId) {
+    const res = await this.models.UserSubscription.findAll({
+      where: { userFollowingId },
       include: [{ model: this.models.User, as: "userFollower" }]
     });
 
     return res.map(el => el.userFollower);
   }
 
-  async isFollowed(userId) {
+  async isFollowed(userFollowingId) {
     if (!this.context.user.id) return null;
 
-    const row = await this.models.UserUser.findOne({
-      where: { userFollowerId: this.context.user.id, userId }
+    const row = await this.models.UserSubscription.findOne({
+      where: { userFollowerId: this.context.user.id, userFollowingId }
     });
 
     return Boolean(row);
   }
 
-  async getFollowersCount(userId) {
-    return this.models.UserUser.count({ where: { userId } });
+  async getFollowersCount(userFollowerId) {
+    return this.models.UserSubscription.count({ where: { userFollowerId } });
   }
 
   async getPosts(id) {
@@ -180,24 +182,26 @@ class InstataAPI extends DataSource {
     return this.models.Post.create({ ...post, userId: this.context.user.id });
   }
 
-  async addFollow(userId) {
+  async addFollow(userFollowingId) {
     if (!this.context.user.id) this._forbiddenError();
 
-    await this.models.UserUser.create({
-      userId,
+    await this.models.UserSubscription.create({
+      userFollowingId,
       userFollowerId: this.context.user.id
     });
 
-    return this.models.User.findOne({ where: { id: userId } });
+    return this.models.User.findOne({ where: { id: userFollowingId } });
   }
 
-  async deleteFollow(userId) {
+  async deleteFollow(userFollowingId) {
     if (!this.context.user.id) this._forbiddenError();
 
-    const row = await this.models.UserUser.findOne({ where: { userId } });
+    const row = await this.models.UserSubscription.findOne({
+      where: { userFollowingId }
+    });
     await row.destroy();
 
-    return this.models.User.findOne({ where: { id: userId } });
+    return this.models.User.findOne({ where: { id: userFollowingId } });
   }
 }
 
