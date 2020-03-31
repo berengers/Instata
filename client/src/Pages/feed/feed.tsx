@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 
 import PostDetails from "Modules/post/postFeed/postDetails";
 import Sidebar from "Modules/feedSideBar/sideBarFeed";
+import Loader from "Lib/loader/loader";
 import "./feed.scss";
 
 const GET_FEED = gql`
@@ -42,17 +43,18 @@ export interface IFeedUserContract {
 
 function Feed() {
   const { loading, error, data } = useQuery(GET_FEED, {
-    variables: { limit: 5 }
+    variables: { limit: 5 },
+    fetchPolicy: "cache-and-network"
   });
 
-  if (loading) return <div>Loading ...</div>;
   if (error) return <div>Error</div>;
 
-  const posts: Array<IFeedPostContract> = data.feed;
+  const posts: Array<IFeedPostContract> = (data && data.feed) || [];
 
   return (
     <div className="Feed">
       <div className="Feed-posts">
+        <Loader display={loading} />
         {posts.map(post => (
           <PostDetails post={post} key={post.id} />
         ))}

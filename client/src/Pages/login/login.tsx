@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
+import Loader from "Lib/loader/loader";
 import { UserContext } from "Services/context/userContext";
 import "./login.scss";
 import illustration from "Static/login-image.png";
@@ -59,11 +60,15 @@ function Login() {
 
   return (
     <div className="Login">
+      <Loader display={false} />
+
       <img src={illustration} alt="illustration" />
       <div className="Login-formContainer">
         <img src={logo} alt="logo" className="Login-logo" />
         {loading ? (
-          <div className="Login-loading">Loading...</div>
+          <div className="Login-loading">
+            <Loader />
+          </div>
         ) : (
           <form className="Login-form" onSubmit={submit}>
             <label>email</label>

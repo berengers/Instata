@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import ProfileHeader from "Modules/profile/profileHeader/profileHeader";
 import PostsList from "Modules/post/postsList/postsList";
+import Loader from "Lib/loader/loader";
 import "./profile.scss";
 
 const GET_USER_HEADER = gql`
@@ -54,7 +55,8 @@ function Profile() {
     variables: { username }
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader style={{ marginTop: "20px" }} />;
+
   if (error) return <p>ERROR: {error.message}</p>;
   if (data === undefined) return <p>ERROR</p>;
 

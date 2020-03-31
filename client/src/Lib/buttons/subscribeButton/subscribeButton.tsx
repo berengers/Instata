@@ -1,7 +1,7 @@
 import React from "react";
 
+import Loader from "Lib/loader/loader";
 import "./subscribeButton.scss";
-import loader from "Static/loader.gif";
 
 interface IProps {
   loading?: boolean;
@@ -20,17 +20,10 @@ export default function SubscribeButton({
 
   return (
     <div className="SubscribeButton">
-      <div
-        className={`SubscribeButton-button ${loading ? "loading" : ""}`}
-        onClick={clickButton}
-      >
+      <div className="SubscribeButton-button" onClick={clickButton}>
         Follow
       </div>
-      <img
-        src={loader}
-        alt="loader"
-        className={`SubscribeButton-loader ${loading ? "visible" : ""}`}
-      />
+      <Loader display={loading} button />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+.UnsubscribeButton-buttonContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--size-height-button);
+  padding: 0 26px;
+  border-radius: var(--size-border-radius-button);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.UnsubscribeButton-checkIconContainer {
+  display: flex;
+  font-size: 16px;
+  color: #959595;
+}

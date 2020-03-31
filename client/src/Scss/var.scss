@@ -6,6 +6,10 @@ $breakpoint-xl: 1200px;
 :root {
   --size-app-max-width: 935px;
   --size-feed-post-width: 614px;
+  --size-border-radius-button: 6px;
+  --size-height-button: 28px;
 
-  --color-blue: #007bcb;
+  --color-info: #007bcb;
+  --color-alert: #ed4956;
+  --color-border: #dbdbdb;
 }

@@ -3,17 +3,15 @@
 }
 
 .SubscribeButton-button {
-  padding: 4px 24px;
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  height: var(--size-height-button);
+  padding: 0 24px;
+  border-radius: var(--size-border-radius-button);
   font-weight: 600;
   color: white;
-  background: var(--color-blue, grey);
+  background: var(--color-info, grey);
   cursor: pointer;
-
-  &.loading {
-    opacity: .2;
-    cursor: unset;
-  }
 }
 
 .SubscribeButton-loader {
@@ -22,7 +20,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 32px;
 
   &.visible { display: block }
 }

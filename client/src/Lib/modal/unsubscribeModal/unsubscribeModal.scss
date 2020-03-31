@@ -1,0 +1,36 @@
+.UnsubscribeModal-card {
+  text-align: center;
+}
+
+$image-size: 90px;
+
+.UnsubscribeModal-imageContainer {
+  width: $image-size;
+  height: $image-size;
+  margin: 32px auto 30px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.UnsubscribeModal-image {
+  position: relative;
+  top: 50%;
+  width: $image-size;
+  height: auto;
+  transform: translateY(-50%);
+}
+
+.UnsubscribeModal-subtitle {
+  margin-bottom: 30px;
+}
+
+.UnsubscribeModal-validatedButton, .UnsubscribeModal-cancelButton {
+  border-top: 1px solid var(--color-border);
+  padding: 16px;
+  cursor: pointer;
+}
+
+.UnsubscribeModal-validatedButton {
+  font-weight: 600;
+  color: var(--color-alert);
+}
