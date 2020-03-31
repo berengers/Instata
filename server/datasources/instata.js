@@ -32,6 +32,16 @@ class InstataAPI extends DataSource {
     }
   }
 
+  async logout(token) {
+    const row = await this.models.Token.findOne({ where: { token } });
+
+    if (row) {
+      await row.destroy();
+    }
+
+    console.error("Token didnt exist");
+  }
+
   async getFeedPosts({ limit = 10, offset = 0 }) {
     if (!this.context.user.id) this._forbiddenError();
 

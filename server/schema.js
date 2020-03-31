@@ -73,7 +73,7 @@ const typeDefs = gql`
     createPost(post: PostInput!): Post!
     togglePostLike(postId: ID!): Post!
     login(email: String!, password: String!): Login!
-    logout(userId: Int!): Boolean
+    logout(token: String!): Boolean
   }
 `;
 

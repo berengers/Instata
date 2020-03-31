@@ -1,3 +1,8 @@
-.ProfileHeaderButtons {
-  background: saddlebrown;
+.ProfileHeaderButtons{
+  display: flex;
+}
+
+.ProfileHeaderButtons-settings {
+  margin-left: 13px;
+  cursor: pointer;
 }

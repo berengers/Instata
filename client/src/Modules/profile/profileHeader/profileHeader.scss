@@ -35,19 +35,6 @@
   font-size: 25px;
 }
 
-.ProfileHeader-setProfile {
-  border: 1px solid grey;
-  border-radius: 5px;
-  font-size: 13px;
-  margin-left: 20px;
-  padding: 3px 5px;
-  &:hover { cursor: pointer }
-}
-
-.ProfileHeader-settings {
-  margin-left: 13px;
-}
-
 .ProfileHeader-information-data {
   display: flex;
   & > * {

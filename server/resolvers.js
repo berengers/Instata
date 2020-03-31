@@ -55,6 +55,9 @@ module.exports = {
     }
   },
   Mutation: {
+    createPost: async (_, { post }, { dataSources }) => {
+      return dataSources.instataAPI.createPost(post);
+    },
     login: async (_, { email, password }, { dataSources }) => {
       const token = await dataSources.instataAPI.login(email, password);
       const user = await dataSources.instataAPI.getUser({ email });
@@ -62,6 +65,9 @@ module.exports = {
         token,
         user
       };
+    },
+    logout: async (_, { token }, { dataSources }) => {
+      await dataSources.instataAPI.logout(token);
     },
     toggleFollow: async (_, { userId }, { dataSources }) => {
       const isFollowed = await dataSources.instataAPI.isFollowed(userId);
@@ -80,9 +86,6 @@ module.exports = {
       }
 
       return dataSources.instataAPI.addPostLike(postId);
-    },
-    createPost: async (_, { post }, { dataSources }) => {
-      return dataSources.instataAPI.createPost(post);
     }
   }
 };

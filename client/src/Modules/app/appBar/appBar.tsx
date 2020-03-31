@@ -12,7 +12,7 @@ interface PropsInterface {
 }
 
 function AppBar({ isPrivate }: PropsInterface) {
-  const { username, profilePicture, setUserContext } = useContext(UserContext);
+  const { username, profilePicture } = useContext(UserContext);
 
   return (
     <div className="AppBar">
@@ -30,9 +30,6 @@ function AppBar({ isPrivate }: PropsInterface) {
               pictureLink={profilePicture}
               pictureLabel={username}
             />
-            <button onClick={() => setUserContext(false)}>
-              delete userContext
-            </button>
           </div>
         ) : (
           <div>Public bar</div>

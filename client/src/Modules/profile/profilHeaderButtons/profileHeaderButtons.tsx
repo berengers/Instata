@@ -1,26 +1,43 @@
 import React, { useContext, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import { useHistory } from "react-router-dom";
 
 import "./profileHeaderButtons.scss";
 import svgSettings from "Static/settings.svg";
 import SubscribeButton from "Lib/buttons/subscribeButton/subscribeButton";
 import UnsubscribeButton from "Lib/buttons/unsubscribeButton/unsubscribeButton";
 import UnsubscribeModal from "Lib/modal/unsubscribeModal/unsubscribeModal";
+import UserSettingsModal from "Lib/modal/userSettingsModal/userSettingsModal";
+import { client } from "index";
 import { UserContext } from "Services/context/userContext";
 import { IUserContract } from "Pages/profile/profile";
 import { TOGGLE_FOLLOW } from "Services/graphql/mutation/toggleFollow";
+import { LOGOUT } from "Services/graphql/mutation/logout";
 
 export default function ProfileHeaderButtons({
   user
 }: {
   user: IUserContract;
 }) {
-  const { isLogged, username } = useContext(UserContext);
+  const { isLogged, username, setUserContext } = useContext(UserContext);
   const [unsubscribeModal, setUnsubscribeModal] = useState(false);
+  const [userSettingsModal, setUserSettingsModal] = useState(false);
   const [subscribeData, { loading: loadingSubscribe }] = useMutation(
     TOGGLE_FOLLOW
   );
+  const [logout] = useMutation(LOGOUT);
+  const history = useHistory();
   const isUserConnected = username === user.username;
+
+  const clickLogout = async () => {
+    const token = localStorage.getItem("token");
+    setUserSettingsModal(false);
+    setUserContext(false);
+    localStorage.removeItem("token");
+    history.push("/");
+    await client.clearStore();
+    await logout({ variables: { token } });
+  };
 
   const toggleFollow = async () => {
     if (!isLogged) return; // TODO - Add modal to login
@@ -29,19 +46,23 @@ export default function ProfileHeaderButtons({
   };
 
   const openUnsubscribeModal = () => setUnsubscribeModal(true);
+  const openUserSettingsModal = () => setUserSettingsModal(true);
 
   if (isUserConnected)
     return (
-      <React.Fragment>
-        <div className="ProfileHeader-setProfile text-bold">
-          Modifier le profile
-        </div>
+      <div className="ProfileHeaderButtons">
         <img
           src={svgSettings}
           alt="settings"
-          className="ProfileHeader-settings"
+          className="ProfileHeaderButtons-settings"
+          onClick={openUserSettingsModal}
         />
-      </React.Fragment>
+        <UserSettingsModal
+          display={userSettingsModal}
+          logout={clickLogout}
+          setDisplay={setUserSettingsModal}
+        />
+      </div>
     );
 
   if (user.isFollowed)
