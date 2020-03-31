@@ -132,10 +132,8 @@ class InstataAPI extends DataSource {
     return res.map(el => el.userFollowing);
   }
 
-  async getFollowedCount(userId) {
-    return this.models.UserSubscription.count({
-      where: { userFollowerId: userId }
-    });
+  async getFollowedCount(userFollowerId) {
+    return this.models.UserSubscription.count({ where: { userFollowerId } });
   }
 
   async getFollowers(userFollowingId) {
@@ -157,8 +155,8 @@ class InstataAPI extends DataSource {
     return Boolean(row);
   }
 
-  async getFollowersCount(userFollowerId) {
-    return this.models.UserSubscription.count({ where: { userFollowerId } });
+  async getFollowersCount(userFollowingId) {
+    return this.models.UserSubscription.count({ where: { userFollowingId } });
   }
 
   async getPosts(id) {

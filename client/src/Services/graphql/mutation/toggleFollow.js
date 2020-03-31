@@ -5,6 +5,7 @@ export const TOGGLE_FOLLOW = gql`
     toggleFollow(userId: $userId) {
       id
       isFollowed
+      followersCount
     }
   }
 `;
