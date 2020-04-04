@@ -6,6 +6,17 @@ const typeDefs = gql`
 
   ########## TYPE ###########
 
+  type FeedCursor {
+    postDate: Date!
+    postId: ID!
+  }
+
+  type FeedResponse {
+    cursor: FeedCursor
+    hasMore: Boolean
+    posts: [Post]!
+  }
+
   type Like {
     id: ID!
     user: PublicUser!
@@ -53,8 +64,13 @@ const typeDefs = gql`
   input PostInput {
     description: String
     media: String!
-    createdAt: Date!
-    updatedAt: Date!
+    createdAt: Date
+    updatedAt: Date
+  }
+
+  input FeedCursorInput {
+    postDate: Date!
+    postId: ID!
   }
 
   ########## QUERY ###########
@@ -63,7 +79,7 @@ const typeDefs = gql`
     user(id: ID, username: String): PublicUser!
     post(id: ID!): Post!
     posts(userId: ID): [Post]!
-    feed(limit: Int, offset: Int): [Post]!
+    feed(limit: Int, cursor: FeedCursorInput): FeedResponse!
   }
 
   ########## MUTATION ###########

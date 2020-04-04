@@ -1,7 +1,24 @@
 module.exports = {
   Query: {
-    feed: async (_, { limit, offset }, { dataSources }) => {
-      return dataSources.instataAPI.getFeedPosts({ limit, offset });
+    feed: async (_, { limit, cursor }, { dataSources }) => {
+      const posts = await dataSources.instataAPI.getFeedPosts({
+        limit: limit ? limit + 1 : undefined,
+        cursor
+      });
+
+      if (posts.length === 0) return { hasMore: false, posts: [] };
+
+      const hasMore = Boolean(posts.length === limit + 1);
+      const newCursor = {
+            postId: posts[posts.length - (hasMore ? 2 : 1)].id,
+            postDate: posts[posts.length - (hasMore ? 2 : 1)].createdAt
+          }
+
+      return {
+        cursor: newCursor,
+        hasMore,
+        posts: posts.slice(0, limit)
+      };
     },
     user: async (_, { id, username }, { dataSources }) => {
       return dataSources.instataAPI.getUser({ id, username });
@@ -56,7 +73,9 @@ module.exports = {
   },
   Mutation: {
     createPost: async (_, { post }, { dataSources }) => {
-      return dataSources.instataAPI.createPost(post);
+      const newPost = await dataSources.instataAPI.createPost(post);
+
+      return dataSources.instataAPI.getPost(newPost.id);
     },
     login: async (_, { email, password }, { dataSources }) => {
       const token = await dataSources.instataAPI.login(email, password);

@@ -1,3 +1,11 @@
+const loremIpsum = require("lorem-ipsum").loremIpsum;
+
+const loremOptions = () => ({
+  count: Math.floor(Math.random() * 3 + 1),
+  units: "paragraph"
+});
+const lorem = () => loremIpsum(loremOptions());
+
 const config = require("./config");
 const db = require("./persistence/store")(config.DB);
 const {
@@ -14,8 +22,7 @@ const users = [
     password: "tom_pass",
     username: "Toto",
     name: "Tom Pouce",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod lacus sem, laoreet gravida felis pellentesque id. In quis placerat leo. Donec in purus ac orci pellentesque lacinia.",
+    description: lorem(),
     profilePicture: "https://picsum.photos/id/237/200/300"
   },
   {
@@ -23,8 +30,7 @@ const users = [
     password: "pierre_pass",
     username: "Pipi",
     name: "Pierre Boilan",
-    description:
-      "Ut quis elementum risus. Maecenas vel augue consectetur, consectetur tellus ultrices, auctor ex. Nam rhoncus, risus sit amet molestie lobortis, est magna mollis diam, vel volutpat magna orci at velit. Donec fermentum quam quis odio varius, a tempus sem fermentum.",
+    description: lorem(),
     profilePicture: "https://picsum.photos/id/1025/200/300"
   },
   {
@@ -51,82 +57,173 @@ const userSubscriptions = [
   { userFollowerId: 4, userFollowingId: 1 }
 ];
 
-const authTokens = [{ token: "tom_token", userId: 1 }];
+const authTokens = [
+  { token: "tom_token", userId: 1 },
+  { token: "pierre_token", userId: 2 },
+  { token: "robert_token", userId: 3 },
+  { token: "john_token", userId: 4 }
+];
 
+let i = 1057;
 const posts = [
   {
-    description: "post 1 - user 1",
-    media: "https://picsum.photos/id/1022/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 2 - user 1",
-    media: "https://picsum.photos/id/1023/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 3 - user 1",
-    media: "https://picsum.photos/id/1024/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 4 - user 1",
-    media: "https://picsum.photos/id/1025/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 5 - user 1",
-    media: "https://picsum.photos/id/1026/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 6 - user 1",
-    media: "https://picsum.photos/id/1027/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 7 - user 1",
-    media: "https://picsum.photos/id/1028/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 8 - user 1",
-    media: "https://picsum.photos/id/1029/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "1"
   },
   {
-    description: "post 1 - user 2",
-    media: "https://picsum.photos/id/1031/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
+    userId: "1"
+  },
+  {
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "2"
   },
   {
-    description: "post 2 - user 2",
-    media: "https://picsum.photos/id/1032/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "2"
   },
   {
-    description: "post - user 3",
-    media: "https://picsum.photos/id/1027/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "3"
   },
   {
-    description: "post - user 3",
-    media: "https://picsum.photos/id/1028/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "3"
   },
   {
-    description: "post - user 3",
-    media: "https://picsum.photos/id/1029/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "3"
   },
   {
-    description: "post - user 3",
-    media: "https://picsum.photos/id/1031/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "3"
   },
   {
-    description: "post - user 3",
-    media: "https://picsum.photos/id/1032/800/800",
+    description: lorem(),
+    media: `https://picsum.photos/id/${i++}/800/800`,
     userId: "3"
   }
 ];

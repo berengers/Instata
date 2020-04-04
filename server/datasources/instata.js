@@ -42,7 +42,7 @@ class InstataAPI extends DataSource {
     console.error("Token didnt exist");
   }
 
-  async getFeedPosts({ limit = 10, offset = 0 }) {
+  async getFeedPosts({ limit = 10, cursor }) {
     if (!this.context.user.id) this._forbiddenError();
 
     const users = await this.models.UserSubscription.findAll({
@@ -51,10 +51,29 @@ class InstataAPI extends DataSource {
 
     const usersId = users.map(user => user.userFollowingId);
 
+    const where = cursor
+      ? {
+          [Op.or]: [
+            {
+              createdAt: { [Op.lt]: new Date(cursor.postDate) },
+              userId: { [Op.or]: usersId }
+            },
+            {
+              id: { [Op.lt]: cursor.postId },
+              createdAt: new Date(cursor.postDate),
+              userId: { [Op.or]: usersId }
+            }
+          ]
+        }
+      : { userId: { [Op.or]: usersId } };
+
     return this.models.Post.findAll({
       limit,
-      where: { userId: { [Op.or]: usersId } },
-      order: [["createdAt", "DESC"]],
+      where,
+      order: [
+        ["createdAt", "DESC"],
+        ["id", "DESC"]
+      ],
       include: [
         {
           model: this.models.User

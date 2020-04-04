@@ -45,7 +45,7 @@ module.exports = db => {
 
   const Post = db.define("posts", {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-    description: { type: Sequelize.STRING, allowNull: true },
+    description: { type: Sequelize.TEXT, allowNull: true },
     media: { type: Sequelize.STRING, allowNull: true },
     userId: { type: Sequelize.INTEGER, allowNull: false }
   });
