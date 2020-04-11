@@ -1,16 +1,16 @@
 import React from "react";
 
 import "./profileHeader.scss";
-import { IUserContract } from "Pages/profile/profile";
+import { getUser_user } from "Pages/profile/types/getUser";
 import ProfileHeaderButtons from "Modules/profile/profilHeaderButtons/profileHeaderButtons";
 
-function ProfileHeader({ user }: { user: IUserContract }) {
+function ProfileHeader({ user }: { user: getUser_user }) {
   return (
     <header className="ProfileHeader">
       <div className="ProfileHeader-profilPictureContainer">
         <img
           className="ProfileHeader-profilPicture"
-          src={user.profilePicture}
+          src={user.profilePicture || undefined}
           alt="profile"
         />
       </div>

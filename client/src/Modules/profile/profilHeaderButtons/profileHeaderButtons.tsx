@@ -10,15 +10,11 @@ import UnsubscribeModal from "Lib/modal/unsubscribeModal/unsubscribeModal";
 import UserSettingsModal from "Lib/modal/userSettingsModal/userSettingsModal";
 import { client } from "index";
 import { UserContext } from "Services/context/userContext";
-import { IUserContract } from "Pages/profile/profile";
 import { TOGGLE_FOLLOW } from "Services/graphql/mutation/toggleFollow";
 import { LOGOUT } from "Services/graphql/mutation/logout";
+import { getUser_user } from "Pages/profile/types/getUser";
 
-export default function ProfileHeaderButtons({
-  user
-}: {
-  user: IUserContract;
-}) {
+export default function ProfileHeaderButtons({ user }: { user: getUser_user }) {
   const { isLogged, username, setUserContext } = useContext(UserContext);
   const [unsubscribeModal, setUnsubscribeModal] = useState(false);
   const [userSettingsModal, setUserSettingsModal] = useState(false);

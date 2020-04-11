@@ -1,13 +1,12 @@
 import React from "react";
 import _chunk from "lodash/chunk";
 
-import PostPreview, {
-  PostInterface
-} from "Modules/post/postPreview/postPreview";
+import PostPreview from "Modules/post/postPreview/postPreview";
+import { getUser_user_posts_posts } from "Pages/profile/types/getUser";
 import "./postsList.scss";
 
 interface PropsInterface {
-  posts: [PostInterface];
+  posts: (getUser_user_posts_posts | null)[];
 }
 
 function PostsList({ posts }: PropsInterface) {

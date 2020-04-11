@@ -4,7 +4,7 @@ import Modal from "../modal/modal";
 import "./unsubscribeModal.scss";
 
 interface IProps {
-  profilePicture: string;
+  profilePicture: string | null;
   unsubscribe: () => void;
   username: string;
   display: boolean;
@@ -30,11 +30,13 @@ export default function UnsubscribeModal({
       <Modal display={display} setDisplay={setDisplay}>
         <div className="UnsubscribeModal-card">
           <div className="UnsubscribeModal-imageContainer">
-            <img
-              src={profilePicture}
-              alt="profilePicture"
-              className="UnsubscribeModal-image"
-            />
+            {profilePicture && (
+              <img
+                src={profilePicture}
+                alt="profilePicture"
+                className="UnsubscribeModal-image"
+              />
+            )}
           </div>
           <div className="UnsubscribeModal-subtitle">
             Unsubscribe to @{username} ?
