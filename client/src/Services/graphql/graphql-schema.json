@@ -11,15 +11,15 @@
       {
         "kind": "OBJECT",
         "name": "Query",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "user",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "id",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "ID",
@@ -29,7 +29,7 @@
               },
               {
                 "name": "username",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
@@ -52,11 +52,11 @@
           },
           {
             "name": "post",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "id",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -83,11 +83,11 @@
           },
           {
             "name": "posts",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "userId",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "ID",
@@ -97,7 +97,7 @@
               },
               {
                 "name": "cursor",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "PostCursorInput",
@@ -107,7 +107,7 @@
               },
               {
                 "name": "limit",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -130,11 +130,11 @@
           },
           {
             "name": "feed",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "limit",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -144,7 +144,7 @@
               },
               {
                 "name": "cursor",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "FeedCursorInput",
@@ -194,11 +194,11 @@
       {
         "kind": "OBJECT",
         "name": "PublicUser",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -214,7 +214,7 @@
           },
           {
             "name": "username",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -230,7 +230,7 @@
           },
           {
             "name": "name",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -246,7 +246,7 @@
           },
           {
             "name": "description",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -258,7 +258,7 @@
           },
           {
             "name": "profilePicture",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -270,7 +270,7 @@
           },
           {
             "name": "isFollowed",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -282,7 +282,7 @@
           },
           {
             "name": "follows",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -302,7 +302,7 @@
           },
           {
             "name": "followsCount",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -318,7 +318,7 @@
           },
           {
             "name": "followers",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -338,7 +338,7 @@
           },
           {
             "name": "followersCount",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -354,11 +354,11 @@
           },
           {
             "name": "posts",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "userId",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "ID",
@@ -368,7 +368,7 @@
               },
               {
                 "name": "cursor",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "PostCursorInput",
@@ -378,7 +378,7 @@
               },
               {
                 "name": "limit",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
@@ -401,7 +401,7 @@
           },
           {
             "name": "postsCount",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -417,7 +417,7 @@
           },
           {
             "name": "createdAt",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -433,7 +433,7 @@
           },
           {
             "name": "updatedAt",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -476,12 +476,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "PostCursorInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "postId",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -495,7 +495,7 @@
           },
           {
             "name": "postDate",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -515,7 +515,7 @@
       {
         "kind": "SCALAR",
         "name": "Date",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -525,11 +525,11 @@
       {
         "kind": "OBJECT",
         "name": "PostsResponse",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "cursor",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -545,7 +545,7 @@
           },
           {
             "name": "hasMore",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -561,7 +561,7 @@
           },
           {
             "name": "posts",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -588,11 +588,11 @@
       {
         "kind": "OBJECT",
         "name": "PostsCursor",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "postId",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -608,7 +608,7 @@
           },
           {
             "name": "postDate",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -631,11 +631,11 @@
       {
         "kind": "OBJECT",
         "name": "Post",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -651,7 +651,7 @@
           },
           {
             "name": "description",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -663,7 +663,7 @@
           },
           {
             "name": "media",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -679,7 +679,7 @@
           },
           {
             "name": "liked",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -695,7 +695,7 @@
           },
           {
             "name": "likes",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -715,7 +715,7 @@
           },
           {
             "name": "likesCount",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -731,7 +731,7 @@
           },
           {
             "name": "user",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -747,7 +747,7 @@
           },
           {
             "name": "createdAt",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -763,7 +763,7 @@
           },
           {
             "name": "updatedAt",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -786,11 +786,11 @@
       {
         "kind": "OBJECT",
         "name": "Like",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -806,7 +806,7 @@
           },
           {
             "name": "user",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -822,7 +822,7 @@
           },
           {
             "name": "post",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -838,7 +838,7 @@
           },
           {
             "name": "createdAt",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -854,7 +854,7 @@
           },
           {
             "name": "updatedAt",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -877,12 +877,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "FeedCursorInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "postDate",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -896,7 +896,7 @@
           },
           {
             "name": "postId",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -916,11 +916,11 @@
       {
         "kind": "OBJECT",
         "name": "FeedResponse",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "cursor",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -932,7 +932,7 @@
           },
           {
             "name": "hasMore",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -944,7 +944,7 @@
           },
           {
             "name": "posts",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -971,11 +971,11 @@
       {
         "kind": "OBJECT",
         "name": "FeedCursor",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "postDate",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -991,7 +991,7 @@
           },
           {
             "name": "postId",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1014,15 +1014,15 @@
       {
         "kind": "OBJECT",
         "name": "Mutation",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "toggleFollow",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "userId",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1049,11 +1049,11 @@
           },
           {
             "name": "createPost",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "post",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1080,11 +1080,11 @@
           },
           {
             "name": "togglePostLike",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "postId",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1111,11 +1111,11 @@
           },
           {
             "name": "login",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "email",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1129,7 +1129,7 @@
               },
               {
                 "name": "password",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1156,11 +1156,11 @@
           },
           {
             "name": "logout",
-            "description": null,
+            "description": "",
             "args": [
               {
                 "name": "token",
-                "description": null,
+                "description": "",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1190,12 +1190,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "PostInput",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": [
           {
             "name": "description",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -1205,7 +1205,7 @@
           },
           {
             "name": "media",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1219,7 +1219,7 @@
           },
           {
             "name": "createdAt",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "Date",
@@ -1229,7 +1229,7 @@
           },
           {
             "name": "updatedAt",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "Date",
@@ -1245,11 +1245,11 @@
       {
         "kind": "OBJECT",
         "name": "Login",
-        "description": null,
+        "description": "",
         "fields": [
           {
             "name": "token",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1265,7 +1265,7 @@
           },
           {
             "name": "user",
-            "description": null,
+            "description": "",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2084,20 +2084,20 @@
       {
         "kind": "ENUM",
         "name": "CacheControlScope",
-        "description": null,
+        "description": "",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "PUBLIC",
-            "description": null,
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "PRIVATE",
-            "description": null,
+            "description": "",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -2118,7 +2118,7 @@
     "directives": [
       {
         "name": "cacheControl",
-        "description": null,
+        "description": "",
         "locations": [
           "FIELD_DEFINITION",
           "OBJECT",
@@ -2127,7 +2127,7 @@
         "args": [
           {
             "name": "maxAge",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "SCALAR",
               "name": "Int",
@@ -2137,7 +2137,7 @@
           },
           {
             "name": "scope",
-            "description": null,
+            "description": "",
             "type": {
               "kind": "ENUM",
               "name": "CacheControlScope",
@@ -2214,91 +2214,6 @@
               "ofType": null
             },
             "defaultValue": "\"No longer supported\""
-          }
-        ]
-      },
-      {
-        "name": "client",
-        "description": "Direct the client to resolve this field locally, either from the cache or local resolvers.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_DEFINITION",
-          "INLINE_FRAGMENT"
-        ],
-        "args": [
-          {
-            "name": "always",
-            "description": "When true, the client will never use the cache for this value. See\nhttps://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ]
-      },
-      {
-        "name": "export",
-        "description": "Export this locally resolved field as a variable to be used in the remainder of this query. See\nhttps://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables",
-        "locations": [
-          "FIELD"
-        ],
-        "args": [
-          {
-            "name": "as",
-            "description": "The variable name to export this field as.",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ]
-      },
-      {
-        "name": "connection",
-        "description": "Specify a custom store key for this result. See\nhttps://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive",
-        "locations": [
-          "FIELD"
-        ],
-        "args": [
-          {
-            "name": "key",
-            "description": "Specify the store key.",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "filter",
-            "description": "An array of query argument names to include in the generated custom store key.",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
           }
         ]
       }

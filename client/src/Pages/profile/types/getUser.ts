@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { PostCursorInput } from "./../../../Services/graphql/types/graphql-global-types";
+
 // ====================================================
 // GraphQL query operation: getUser
 // ====================================================
@@ -17,6 +19,7 @@ export interface getUser_user_posts_posts {
   __typename: "Post";
   id: string;
   media: string;
+  likesCount: number;
 }
 
 export interface getUser_user_posts {
@@ -45,7 +48,8 @@ export interface getUser {
 }
 
 export interface getUserVariables {
-  username?: string | null;
   id?: string | null;
+  username?: string | null;
+  cursor?: PostCursorInput | null;
   limit?: number | null;
 }

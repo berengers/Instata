@@ -8,7 +8,7 @@ interface PropsInterface {
 }
 
 export interface PostInterface {
-  id: number;
+  id: string;
   media: string;
   likesCount: number;
 }

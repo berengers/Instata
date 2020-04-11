@@ -12,6 +12,11 @@ export interface FeedCursorInput {
   postId: string;
 }
 
+export interface PostCursorInput {
+  postId: string;
+  postDate: any;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

@@ -11,7 +11,12 @@ import { getUser } from "./types/getUser";
 import "./profile.scss";
 
 const GET_USER_HEADER = gql`
-  query getUser($username: String, $id: ID, $limit: Int) {
+  query getUser(
+    $id: ID
+    $username: String
+    $cursor: PostCursorInput
+    $limit: Int
+  ) {
     user(username: $username, id: $id) {
       id
       username
@@ -23,7 +28,7 @@ const GET_USER_HEADER = gql`
       followsCount
       postsCount
 
-      posts(limit: $limit) {
+      posts(cursor: $cursor, limit: $limit) {
         cursor {
           postDate
           postId
@@ -32,6 +37,7 @@ const GET_USER_HEADER = gql`
         posts {
           id
           media
+          likesCount
         }
       }
     }
@@ -39,12 +45,53 @@ const GET_USER_HEADER = gql`
 `;
 
 function Profile() {
-  const limit = 1;
+  const limit = 20;
   const { username } = useParams();
-  const { loading, error, data } = useQuery<getUser>(GET_USER_HEADER, {
-    variables: { username, limit }
+  const { loading, error, data, fetchMore } = useQuery<getUser>(
+    GET_USER_HEADER,
+    {
+      variables: { username, limit }
+    }
+  );
+
+  async function loadMore() {
+    if (!user.posts.hasMore) return;
+
+    await fetchMore({
+      variables: {
+        cursor: {
+          postDate: user.posts.cursor.postDate,
+          postId: user.posts.cursor.postId
+        },
+        limit
+      },
+      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+        return {
+          user: {
+            ...user,
+            posts: {
+              cursor: Object.assign(
+                user.posts.cursor,
+                fetchMoreResult.user.posts.cursor
+              ),
+              hasMore: fetchMoreResult.user.posts.hasMore,
+              posts: [
+                ...previousResult.user.posts.posts,
+                ...fetchMoreResult.user.posts.posts
+              ],
+              __typename: fetchMoreResult.user.posts.__typename
+            },
+            __typename: fetchMoreResult.user.__typename
+          }
+        };
+      }
+    });
+  }
+
+  const [ref] = useInfiniteScroll({
+    cb: loadMore,
+    observerOptions: { rootMargin: "500px" }
   });
-  const [ref] = useInfiniteScroll({ cb: () => console.log(45) });
 
   if (loading) return <Loader style={{ marginTop: "20px" }} />;
 
@@ -59,9 +106,11 @@ function Profile() {
         <ProfileHeader user={user} />
       </div>
       <PostsList posts={user.posts.posts} />
-      <div ref={ref}>
-        <Loader style={{ marginTop: "20px" }} />
-      </div>
+      {user.posts.hasMore && (
+        <div ref={ref}>
+          <Loader style={{ marginTop: "20px" }} />
+        </div>
+      )}
     </div>
   );
 }

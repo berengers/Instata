@@ -16,7 +16,7 @@ function PostsList({ posts }: PropsInterface) {
     <div className="PostsList">
       {_chunk([...posts, ...emptyPosts], 3).map(line => (
         <div key={`line-${line[0].id}`} className="PostsList-line">
-          {line.map((post, i) => {
+          {line.map((post: getUser_user_posts_posts, i) => {
             return post.id ? (
               <PostPreview key={post.id} post={post} />
             ) : (
