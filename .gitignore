@@ -108,5 +108,5 @@ sketch
 
 # End of https://www.gitignore.io/api/react,phpstorm
 
-
+.idea
 .env
