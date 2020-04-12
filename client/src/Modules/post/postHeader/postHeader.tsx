@@ -2,18 +2,24 @@ import React from "react";
 
 import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
 import "./postHeader.scss";
-import { IFeedUserContract } from "Pages/feed/feed";
 
-function PostHeader({ user }: { user: IFeedUserContract }) {
+interface IProps {
+  to: string;
+  pictureLink: string | null;
+  pictureLabel: string;
+  username: string;
+}
+
+function PostHeader({ pictureLabel, pictureLink, to, username }: IProps) {
   return (
     <div className="PostHeader">
       <AvatarButton
-        to={`/${user.username}`}
-        pictureLink={user.profilePicture}
-        pictureLabel={user.username}
+        to={to}
+        pictureLink={pictureLink}
+        pictureLabel={pictureLabel}
       />
       <div className="PostHeader-content">
-        <strong>{user.username}</strong>
+        <strong>{username}</strong>
       </div>
     </div>
   );

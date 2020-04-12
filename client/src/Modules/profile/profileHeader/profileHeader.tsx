@@ -3,15 +3,17 @@ import React from "react";
 import "./profileHeader.scss";
 import { getUser_user } from "Pages/profile/types/getUser";
 import ProfileHeaderButtons from "Modules/profile/profilHeaderButtons/profileHeaderButtons";
+import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
 
 function ProfileHeader({ user }: { user: getUser_user }) {
   return (
     <header className="ProfileHeader">
       <div className="ProfileHeader-profilPictureContainer">
-        <img
-          className="ProfileHeader-profilPicture"
-          src={user.profilePicture || undefined}
-          alt="profile"
+        <AvatarButton
+          pictureLink={user.profilePicture}
+          to={`/${user.username}`}
+          pictureLabel={user.username}
+          size={"150px"}
         />
       </div>
       <div className="ProfileHeader-information">

@@ -4,7 +4,7 @@ import { format } from "timeago.js";
 import PostHeader from "Modules/post/postHeader/postHeader";
 import LikeButton from "Lib/buttons/likeButton/likeButton";
 import "./postDetails.scss";
-import { IFeedPostContract } from "Pages/feed/feed";
+import { feed_feed_posts } from "Pages/feed/types/feed";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
@@ -18,21 +18,26 @@ const TOGGLE_POST_LIKE = gql`
   }
 `;
 
-function PostDetails({ post }: { post: IFeedPostContract }) {
+function PostDetails({ post }: { post: feed_feed_posts }) {
   const { user } = post;
   const [togglePostLike] = useMutation(TOGGLE_POST_LIKE);
 
-  const toggleLike = async (postId: number) => {
+  const toggleLike = async (postId: string) => {
     await togglePostLike({ variables: { postId: postId } });
   };
 
   return (
     <div className="PostDetails">
-      <PostHeader user={user} />
+      <PostHeader
+        pictureLabel={user.username}
+        pictureLink={user.profilePicture}
+        to={`/${user.username}`}
+        username={user.username}
+      />
       <div className="PostDetails-imageContainer">
         <img
           src={post.media}
-          alt={post.description}
+          alt={post.description || undefined}
           className="PostDetails-image"
         />
       </div>

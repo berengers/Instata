@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import profilePictureDeafult from "Static/profile-picture-default.png";
 import "./avatarButton.scss";
 
 interface IProps {
   to: string;
   size?: string;
-  pictureLink?: string;
+  pictureLink?: string | null;
   pictureLabel?: string;
 }
 
@@ -24,7 +25,7 @@ function AvatarButton({
           style={{ width: size, height: size }}
         >
           <img
-            src={pictureLink}
+            src={pictureLink || profilePictureDeafult}
             alt={pictureLabel}
             className="AvatarButton-image"
           />

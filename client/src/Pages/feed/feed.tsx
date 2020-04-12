@@ -6,6 +6,7 @@ import PostDetails from "Modules/post/postFeed/postDetails";
 import Sidebar from "Modules/feedSideBar/sideBarFeed";
 import Loader from "Lib/loader/loader";
 import useInfiniteScroll from "Lib/hooks/useInfiniteScroll";
+import { feed } from "./types/feed";
 import "./feed.scss";
 
 const GET_FEED = gql`
@@ -33,41 +34,15 @@ const GET_FEED = gql`
   }
 `;
 
-interface IFetchMore {
-  feed: IFeedQueryContract;
-}
-
-export interface IFeedQueryContract {
-  cursor: number;
-  hasMore: boolean;
-  posts: [IFeedPostContract];
-}
-
-export interface IFeedPostContract {
-  id: number;
-  media: string;
-  description?: string;
-  liked: boolean;
-  likesCount: number;
-  createdAt: string;
-  user: IFeedUserContract;
-}
-
-export interface IFeedUserContract {
-  id: number;
-  username: string;
-  profilePicture?: string;
-}
-
 function Feed() {
   const limit = 6;
-  const { data, loading, error, fetchMore } = useQuery(GET_FEED, {
+  const { data, loading, error, fetchMore } = useQuery<feed>(GET_FEED, {
     variables: { limit },
     fetchPolicy: "cache-and-network"
   });
 
   async function loadMore() {
-    if (!data.feed.hasMore) return;
+    if (!data || !data.feed.hasMore || !data.feed.cursor) return;
 
     await fetchMore({
       variables: {
@@ -101,12 +76,20 @@ function Feed() {
     observerOptions: { rootMargin: "1500px" }
   });
 
+  if (!data || (!data.feed && loading)) return <Loader display={loading} />;
   if (error) return <div>Error</div>;
 
-  const initData = { feed: { hasMore: false, cursor: {}, posts: [] } };
   const {
     feed: { hasMore, posts }
-  }: IFetchMore = data || initData;
+  } = data;
+
+  if (posts.length === 0) {
+    return (
+      <p style={{ textAlign: "center" }}>
+        You follow profiles with currently no posts
+      </p>
+    );
+  }
 
   return (
     <div className="Feed">

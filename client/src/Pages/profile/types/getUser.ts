@@ -26,7 +26,7 @@ export interface getUser_user_posts {
   __typename: "PostsResponse";
   cursor: getUser_user_posts_cursor;
   hasMore: boolean;
-  posts: (getUser_user_posts_posts | null)[];
+  posts: getUser_user_posts_posts[];
 }
 
 export interface getUser_user {

@@ -37,7 +37,7 @@ export interface feed_feed {
   __typename: "FeedResponse";
   cursor: feed_feed_cursor | null;
   hasMore: boolean | null;
-  posts: (feed_feed_posts | null)[];
+  posts: feed_feed_posts[];
 }
 
 export interface feed {

@@ -29,9 +29,9 @@ const SwitchLike: FunctionComponent<{ liked: boolean }> = ({
 };
 
 interface ILikeButton {
-  postId: number;
+  postId: string;
   liked: boolean;
-  onClick: (postId: number) => void;
+  onClick: (postId: string) => void;
 }
 
 function LikeButton({
