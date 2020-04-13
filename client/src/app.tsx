@@ -6,6 +6,7 @@ import Feed from "Pages/feed/feed";
 import Login from "Pages/login/login";
 import Profile from "Pages/profile/profile";
 import AppBar from "Modules/app/appBar/appBar";
+import CreatePost from "Pages/createPost/createPost";
 import "./app.scss";
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
         </Switch>
         <div className="App-container">
           <Switch>
+            <Route exact path="/newPost">
+              <CreatePost />
+            </Route>
             <Route exact path="/:username">
               <Profile />
             </Route>

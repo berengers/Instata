@@ -4,7 +4,6 @@ import { format } from "timeago.js";
 import PostHeader from "Modules/post/postHeader/postHeader";
 import LikeButton from "Lib/buttons/likeButton/likeButton";
 import "./postDetails.scss";
-import { feed_feed_posts } from "Pages/feed/types/feed";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
@@ -18,8 +17,22 @@ const TOGGLE_POST_LIKE = gql`
   }
 `;
 
-function PostDetails({ post }: { post: feed_feed_posts }) {
-  const { user } = post;
+interface IProps {
+  post: {
+    createdAt: Date;
+    description: string | null;
+    id: string;
+    liked: boolean;
+    likesCount: number;
+    media: string | null;
+  };
+  user: {
+    profilePicture: string | null;
+    username: string;
+  };
+}
+
+function PostDetails({ post, user }: IProps) {
   const [togglePostLike] = useMutation(TOGGLE_POST_LIKE);
 
   const toggleLike = async (postId: string) => {
@@ -36,7 +49,7 @@ function PostDetails({ post }: { post: feed_feed_posts }) {
       />
       <div className="PostDetails-imageContainer">
         <img
-          src={post.media}
+          src={post.media || undefined}
           alt={post.description || undefined}
           className="PostDetails-image"
         />
@@ -50,7 +63,7 @@ function PostDetails({ post }: { post: feed_feed_posts }) {
       <div className="PostDetails-description">
         <span className="text-bold">{user.username}</span> {post.description}
       </div>
-      <div className="PostDetails-createdAt">{format(post.createdAt)}</div>
+      <p className="PostDetails-createdAt">{format(post.createdAt)}</p>
     </div>
   );
 }

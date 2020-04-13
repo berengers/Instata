@@ -7,7 +7,9 @@
   border-bottom: 1px solid #dbdbdb;
   background: white;
 
-  a:active { opacity: .5 }
+  a:active {
+    opacity: 0.5;
+  }
 }
 
 .AppBar-content {
@@ -31,4 +33,16 @@
   & > * {
     margin-left: 15px;
   }
+}
+
+.AppBar-createPostContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #d0d0d0;
+  color: #4f4f4f;
+  cursor: pointer;
 }

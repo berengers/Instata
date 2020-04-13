@@ -4,13 +4,18 @@
   border: 1px solid #dedede;
 }
 
-
 $base-color: transparent;
 $shine-color: #e8e8e8;
 $animation-duration: 1.6s;
 
 @mixin background-gradient {
-  background-image: linear-gradient(35deg, transparent 350px, #e8e8e8 400px, #e8e8e8 430px, transparent 480px);
+  background-image: linear-gradient(
+    35deg,
+    transparent 350px,
+    #e8e8e8 400px,
+    #e8e8e8 430px,
+    transparent 480px
+  );
   background-size: 3000px 1850px;
   background-repeat: no-repeat;
   background-position: 0 -680px;
@@ -18,10 +23,10 @@ $animation-duration: 1.6s;
 
 @keyframes skeleton-animation {
   from {
-    background-position: 0 -680px
+    background-position: 0 -680px;
   }
   to {
-    background-position: 0 -1830px
+    background-position: 0 -1830px;
   }
 }
 
@@ -34,7 +39,6 @@ $animation-duration: 1.6s;
   animation: skeleton-animation $animation-duration infinite linear;
 }
 
-
 .PostDetails-image {
   width: 100%;
   position: absolute;
@@ -43,12 +47,15 @@ $animation-duration: 1.6s;
   left: 0;
 }
 
-
 .PostDetails-actions,
 .PostDetails-description,
 .PostDetails-createdAt,
 .PostDetails-countLikes {
   padding: 0 16px;
+}
+
+.PostDetails-description {
+  white-space: pre-line;
 }
 
 .PostDetails-actions {

@@ -2,7 +2,7 @@ import React from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 
-import PostDetails from "Modules/post/postFeed/postDetails";
+import PostDetails from "Modules/post/postDetails/postDetails";
 import Sidebar from "Modules/feedSideBar/sideBarFeed";
 import Loader from "Lib/loader/loader";
 import useInfiniteScroll from "Lib/hooks/useInfiniteScroll";
@@ -95,7 +95,7 @@ function Feed() {
     <div className="Feed">
       <div className="Feed-posts">
         {posts.map(post => (
-          <PostDetails post={post} key={post.id} />
+          <PostDetails post={post} user={post.user} key={post.id} />
         ))}
         {posts.length > 0 && hasMore && (
           <div ref={ref}>

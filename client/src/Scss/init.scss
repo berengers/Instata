@@ -2,5 +2,14 @@
   box-sizing: border-box;
 }
 
-a:active { color: unset; }
-a:visited { color: unset; }
+a:active {
+  color: unset;
+}
+a:visited {
+  color: unset;
+}
+
+button {
+  cursor: pointer;
+  outline: 0;
+}

@@ -6,6 +6,7 @@ import "./appBar.scss";
 import logo from "Static/instata-logo.png";
 import { UserContext } from "Services/context/userContext";
 import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 interface PropsInterface {
   isPrivate: boolean;
@@ -19,6 +20,9 @@ function AppBar({ isPrivate }: PropsInterface) {
       <div className="AppBar-content">
         <Link to="/">
           <img src={logo} alt="instata logo" className="AppBar-logo" />
+        </Link>
+        <Link to="/newPost" className="AppBar-createPostContainer">
+          <PhotoCameraIcon />
         </Link>
         {isPrivate ? (
           <div className="AppBar-menu">

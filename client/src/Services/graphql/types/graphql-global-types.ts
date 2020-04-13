@@ -17,6 +17,13 @@ export interface PostCursorInput {
   postDate: any;
 }
 
+export interface PostInput {
+  description?: string | null;
+  media: string;
+  createdAt?: any | null;
+  updatedAt?: any | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
