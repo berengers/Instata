@@ -92,7 +92,7 @@ function Feed() {
   }
 
   return (
-    <div className="Feed">
+    <div className="Feed" data-test="feed-page">
       <div className="Feed-posts">
         {posts.map(post => (
           <PostDetails post={post} user={post.user} key={post.id} />

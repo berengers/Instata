@@ -1,16 +1,19 @@
-.Post {
+.PostPreview {
   background: lightgrey;
   display: block;
 
-  &:hover { cursor: pointer; }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.Post-container {
-  padding-bottom: 100%;
+.PostPreview-container {
   position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
 }
 
-.Post-overData {
+.PostPreview-overData {
   position: absolute;
   top: 0;
   right: 0;
@@ -19,14 +22,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, .3);
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
   font-weight: 500;
 
-  svg { margin-right: 7px }
+  svg {
+    margin-right: 7px;
+  }
 }
 
-.Post-thumb {
+.PostPreview-thumb {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 100%;
 }

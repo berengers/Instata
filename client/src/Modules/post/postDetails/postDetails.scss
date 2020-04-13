@@ -33,6 +33,7 @@ $animation-duration: 1.6s;
 .PostDetails-imageContainer {
   position: relative;
   padding-top: 100%;
+  overflow: hidden;
   background-color: #ddd;
 
   @include background-gradient;
@@ -42,9 +43,10 @@ $animation-duration: 1.6s;
 .PostDetails-image {
   width: 100%;
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
   left: 0;
+  transform: translateY(-50%);
 }
 
 .PostDetails-actions,

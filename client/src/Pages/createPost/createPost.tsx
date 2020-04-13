@@ -97,6 +97,7 @@ export default function CreatePost() {
           placeholder="Ex: https://picsum.photos/id/203/900/900"
           name="PhotoUrl"
           value={photoUrl}
+          data-test="input-media-url"
           onChange={handleChange}
         />
 
@@ -105,14 +106,27 @@ export default function CreatePost() {
           placeholder="Write a description about your photo"
           name="Description"
           value={description}
+          data-test="input-description"
           onChange={handleChange}
         />
-        <button type="submit" className="CreatePost-submit">
+        <button
+          type="submit"
+          data-test="submit-button"
+          className="CreatePost-submit"
+        >
           Publish
           <Loader display={loading} button />
         </button>
-        {data && <p className="CreatePost-success">Post Created</p>}
-        {error && <p className="CreatePost-error">{error.message}</p>}
+        {data && (
+          <p data-test="success-container" className="CreatePost-success">
+            Post Created
+          </p>
+        )}
+        {error && (
+          <p data-test="error-container" className="CreatePost-error">
+            {error.message}
+          </p>
+        )}
       </form>
       <div className="CreatePost-preview">
         <PostDetail post={post} user={user} />
