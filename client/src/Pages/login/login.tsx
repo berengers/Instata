@@ -4,9 +4,9 @@ import { gql } from "apollo-boost";
 
 import Loader from "Lib/loader/loader";
 import { UserContext } from "Services/context/userContext";
-import "./login.scss";
 import illustration from "Static/login-image.png";
 import logo from "Static/instata-logo.png";
+import "./login.scss";
 
 const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -72,14 +72,30 @@ function Login() {
         ) : (
           <form className="Login-form" onSubmit={submit}>
             <label>email</label>
-            <input type="text" name="email" onChange={handleChange} />
+            <input
+              type="text"
+              name="email"
+              data-test="input-email"
+              onChange={handleChange}
+            />
             <label>password</label>
-            <input type="password" name="password" onChange={handleChange} />
-            <button type="submit" className="Login-form-submit">
+            <input
+              type="password"
+              name="password"
+              data-test="input-password"
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              className="Login-form-submit"
+              data-test="submit-button"
+            >
               Login
             </button>
             {error && (
-              <div className="Login-error">Wrong email or password</div>
+              <div className="Login-error" data-test="error-container">
+                Wrong email or password
+              </div>
             )}
           </form>
         )}

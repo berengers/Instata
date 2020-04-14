@@ -18,15 +18,16 @@ function PostPreview({ post }: PropsInterface) {
 
   return (
     <div
-      className="Post"
+      className="PostPreview"
+      data-test="postPreview-component"
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={console.log}
     >
-      <div className="Post-container">
-        <img src={post.media} alt="post" className="Post-thumb" />
+      <div className="PostPreview-container">
+        <img src={post.media} alt="post" className="PostPreview-thumb" />
         {hover && (
-          <div className="Post-overData">
+          <div className="PostPreview-overData">
             <FavoriteIcon /> {post.likesCount}
           </div>
         )}

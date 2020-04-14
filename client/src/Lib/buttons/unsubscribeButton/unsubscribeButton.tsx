@@ -15,7 +15,7 @@ export default function UnsubscribeButton({
   onClick: clickButton
 }: IProps) {
   return (
-    <div className="UnsubscribeButton">
+    <div className="UnsubscribeButton" data-test="unsubscribe-button">
       <div className="UnsubscribeButton-buttonContainer" onClick={clickButton}>
         <PersonIcon fontSize="small" />
         <span className="UnsubscribeButton-checkIconContainer">

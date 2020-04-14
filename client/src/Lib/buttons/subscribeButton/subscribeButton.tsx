@@ -19,7 +19,7 @@ export default function SubscribeButton({
   };
 
   return (
-    <div className="SubscribeButton">
+    <div className="SubscribeButton" data-test="subscribe-button">
       <div className="SubscribeButton-button" onClick={clickButton}>
         Follow
       </div>

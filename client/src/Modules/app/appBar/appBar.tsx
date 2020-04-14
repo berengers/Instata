@@ -21,20 +21,22 @@ function AppBar({ isPrivate }: PropsInterface) {
         <Link to="/">
           <img src={logo} alt="instata logo" className="AppBar-logo" />
         </Link>
-        <Link to="/newPost" className="AppBar-createPostContainer">
-          <PhotoCameraIcon />
-        </Link>
         {isPrivate ? (
-          <div className="AppBar-menu">
-            <Link to="/">
-              <HomeIcon />
+          <React.Fragment>
+            <Link to="/newPost" className="AppBar-createPostContainer">
+              <PhotoCameraIcon />
             </Link>
-            <AvatarButton
-              to={`/${username}`}
-              pictureLink={profilePicture}
-              pictureLabel={username}
-            />
-          </div>
+            <div className="AppBar-menu">
+              <Link to="/">
+                <HomeIcon />
+              </Link>
+              <AvatarButton
+                to={`/${username}`}
+                pictureLink={profilePicture}
+                pictureLabel={username}
+              />
+            </div>
+          </React.Fragment>
         ) : (
           <div>Public bar</div>
         )}

@@ -101,7 +101,7 @@ function Profile() {
   const { user } = data;
 
   return (
-    <div className="Profile">
+    <div className="Profile" data-test="profile-page">
       <div className="Profile-profileHeader">
         <ProfileHeader user={user} />
       </div>

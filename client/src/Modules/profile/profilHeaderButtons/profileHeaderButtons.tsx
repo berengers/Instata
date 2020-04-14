@@ -51,6 +51,7 @@ export default function ProfileHeaderButtons({ user }: { user: getUser_user }) {
           src={svgSettings}
           alt="settings"
           className="ProfileHeaderButtons-settings"
+          data-test="settings-button"
           onClick={openUserSettingsModal}
         />
         <UserSettingsModal
