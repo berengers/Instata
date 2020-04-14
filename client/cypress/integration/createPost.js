@@ -1,7 +1,7 @@
 import config from "../config";
 
 describe("Create Post", () => {
-  it("Display an error if missing email", () => {
+  it("Create post and find this post first in profile page", () => {
     cy.fastLogin();
     cy.visit("/newPost");
 
@@ -10,6 +10,7 @@ describe("Create Post", () => {
     cy.get('[data-test="submit-button"]').click();
     cy.get('[data-test="success-container"]');
     cy.visit(`/${config.user1.username}`);
+    cy.get('[data-test="profile-page"]');
     cy.get('[data-test="postPreview-component"] img')
       .first()
       .should("have.attr", "src", config.post1.mediaUrl);
