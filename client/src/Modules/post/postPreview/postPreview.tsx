@@ -19,7 +19,7 @@ function PostPreview({ post }: PropsInterface) {
   return (
     <div
       className="PostPreview"
-      data-test="PostPreview-component"
+      data-test="postPreview-component"
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={console.log}

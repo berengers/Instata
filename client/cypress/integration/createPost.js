@@ -10,7 +10,7 @@ describe("Create Post", () => {
     cy.get('[data-test="submit-button"]').click();
     cy.get('[data-test="success-container"]');
     cy.visit(`/${config.user1.username}`);
-    cy.get('[data-test="PostPreview-component"] img')
+    cy.get('[data-test="postPreview-component"] img')
       .first()
       .should("have.attr", "src", config.post1.mediaUrl);
   });
