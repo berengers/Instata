@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react'
 
-import Loader from "Lib/loader/loader";
-import "./subscribeButton.scss";
+import Loader from 'Lib/loader/loader'
+import './subscribeButton.scss'
 
-interface IProps {
-  loading?: boolean;
-  onClick: () => Promise<void>;
+interface PropsInterface {
+  loading?: boolean
+  onClick: () => Promise<void>
 }
 
 export default function SubscribeButton({
   loading = false,
   onClick: followUser
-}: IProps) {
+}: PropsInterface) {
   const clickButton = () => {
-    if (loading) return;
+    if (loading) return
 
-    followUser();
-  };
+    followUser()
+  }
 
   return (
     <div className="SubscribeButton" data-test="subscribe-button">
@@ -25,5 +25,5 @@ export default function SubscribeButton({
       </div>
       <Loader display={loading} button />
     </div>
-  );
+  )
 }

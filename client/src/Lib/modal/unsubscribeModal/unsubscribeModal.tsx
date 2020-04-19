@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 
-import Modal from "../modal/modal";
-import "./unsubscribeModal.scss";
+import Modal from '../modal/modal'
+import './unsubscribeModal.scss'
 
-interface IProps {
-  profilePicture: string | null;
-  unsubscribe: () => void;
-  username: string;
-  display: boolean;
-  setDisplay: (value: boolean) => void;
+interface PropsInterface {
+  profilePicture: string | null
+  unsubscribe: () => void
+  username: string
+  display: boolean
+  setDisplay: (value: boolean) => void
 }
 
 export default function UnsubscribeModal({
@@ -17,13 +17,13 @@ export default function UnsubscribeModal({
   username,
   display,
   setDisplay
-}: IProps) {
-  const clickCancel = () => setDisplay(false);
+}: PropsInterface) {
+  const clickCancel = () => setDisplay(false)
 
   const clickUnsubscribe = async () => {
-    setDisplay(false);
-    unsubscribe();
-  };
+    setDisplay(false)
+    unsubscribe()
+  }
 
   return (
     <div className="UnsubscribeModal">
@@ -53,5 +53,5 @@ export default function UnsubscribeModal({
         </div>
       </Modal>
     </div>
-  );
+  )
 }

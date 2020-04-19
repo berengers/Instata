@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import React, { useState } from 'react'
+import FavoriteIcon from '@material-ui/icons/Favorite'
 
-import "./postPreview.scss";
+import './postPreview.scss'
 
 interface PropsInterface {
-  post: PostInterface;
+  post: PostInterface
 }
 
 export interface PostInterface {
-  id: string;
-  media: string;
-  likesCount: number;
+  id: string
+  media: string
+  likesCount: number
 }
 
 function PostPreview({ post }: PropsInterface) {
-  const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState(false)
 
   return (
     <div
@@ -33,7 +33,7 @@ function PostPreview({ post }: PropsInterface) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default PostPreview;
+export default PostPreview

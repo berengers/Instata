@@ -1,12 +1,12 @@
-import React, { useState, useContext, useEffect, FormEvent } from "react";
-import autosize from "autosize";
-import { gql } from "apollo-boost";
-import { useMutation } from "@apollo/react-hooks";
+import React, { useState, useContext, useEffect, FormEvent } from 'react'
+import autosize from 'autosize'
+import { gql } from 'apollo-boost'
+import { useMutation } from '@apollo/react-hooks'
 
-import { UserContext } from "Services/context/userContext";
-import PostDetail from "Modules/post/postDetails/postDetails";
-import Loader from "Lib/loader/loader";
-import "./createPost.scss";
+import { UserContext } from 'Services/context/userContext'
+import PostDetail from 'Modules/post/postDetails/postDetails'
+import Loader from 'Lib/loader/loader'
+import './createPost.scss'
 
 const CREATE_POST = gql`
   mutation createPost($postInput: PostInput!) {
@@ -20,71 +20,71 @@ const CREATE_POST = gql`
       }
     }
   }
-`;
+`
 
 export default function CreatePost() {
-  const [photoUrl, setPhotoUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const { username, profilePicture } = useContext(UserContext);
-  const [createPost, { data, loading, error }] = useMutation(CREATE_POST);
+  const [photoUrl, setPhotoUrl] = useState('')
+  const [description, setDescription] = useState('')
+  const { username, profilePicture } = useContext(UserContext)
+  const [createPost, { data, loading, error }] = useMutation(CREATE_POST)
 
   useEffect(() => {
-    autosize(document.querySelectorAll("textarea"));
-  }, []);
+    autosize(document.querySelectorAll('textarea'))
+  }, [])
 
   const post = {
     createdAt: new Date(),
     description,
-    id: "",
+    id: '',
     liked: false,
     likesCount: 0,
     media: photoUrl
-  };
+  }
 
   const user = {
     profilePicture: profilePicture || null,
     username
-  };
+  }
 
   function handleChange(
     element: FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    const { name, value } = element.currentTarget;
+    const { name, value } = element.currentTarget
 
     switch (name) {
-      case "PhotoUrl":
-        setPhotoUrl(value);
-        break;
-      case "Description":
-        setDescription(value);
-        break;
+      case 'PhotoUrl':
+        setPhotoUrl(value)
+        break
+      case 'Description':
+        setDescription(value)
+        break
       default:
-        console.error(`This value is not valide: ${name}`);
-        break;
+        console.error(`This value is not valide: ${name}`)
+        break
     }
   }
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!description || !photoUrl) {
       // TODO - Add form validation
-      return;
+      return
     }
 
     const postInput = {
       description,
       media: photoUrl
-    };
+    }
 
     try {
-      await createPost({ variables: { postInput } });
-      setPhotoUrl("");
-      setDescription("");
+      await createPost({ variables: { postInput } })
+      setPhotoUrl('')
+      setDescription('')
     } catch (error) {
-      console.error(error.message);
+      console.error(error.message)
     }
-  };
+  }
 
   return (
     <div className="CreatePost">
@@ -132,5 +132,5 @@ export default function CreatePost() {
         <PostDetail post={post} user={user} />
       </div>
     </div>
-  );
+  )
 }

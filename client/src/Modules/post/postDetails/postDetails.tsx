@@ -1,11 +1,11 @@
-import React from "react";
-import { format } from "timeago.js";
+import React from 'react'
+import { format } from 'timeago.js'
 
-import PostHeader from "Modules/post/postHeader/postHeader";
-import LikeButton from "Lib/buttons/likeButton/likeButton";
-import "./postDetails.scss";
-import { useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import PostHeader from 'Modules/post/postHeader/postHeader'
+import LikeButton from 'Lib/buttons/likeButton/likeButton'
+import './postDetails.scss'
+import { useMutation } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
 
 const TOGGLE_POST_LIKE = gql`
   mutation togglePostLike($postId: ID!) {
@@ -15,29 +15,29 @@ const TOGGLE_POST_LIKE = gql`
       likesCount
     }
   }
-`;
+`
 
-interface IProps {
+interface PropsInterface {
   post: {
-    createdAt: Date;
-    description: string | null;
-    id: string;
-    liked: boolean;
-    likesCount: number;
-    media: string | null;
-  };
+    createdAt: Date
+    description: string | null
+    id: string
+    liked: boolean
+    likesCount: number
+    media: string | null
+  }
   user: {
-    profilePicture: string | null;
-    username: string;
-  };
+    profilePicture: string | null
+    username: string
+  }
 }
 
-function PostDetails({ post, user }: IProps) {
-  const [togglePostLike] = useMutation(TOGGLE_POST_LIKE);
+function PostDetails({ post, user }: PropsInterface) {
+  const [togglePostLike] = useMutation(TOGGLE_POST_LIKE)
 
   const toggleLike = async (postId: string) => {
-    await togglePostLike({ variables: { postId: postId } });
-  };
+    await togglePostLike({ variables: { postId: postId } })
+  }
 
   return (
     <div className="PostDetails">
@@ -58,14 +58,14 @@ function PostDetails({ post, user }: IProps) {
         <LikeButton postId={post.id} liked={post.liked} onClick={toggleLike} />
       </div>
       <div className="PostDetails-countLikes text-bold">
-        {post.likesCount} {post.likesCount > 1 ? "likes" : "like"}
+        {post.likesCount} {post.likesCount > 1 ? 'likes' : 'like'}
       </div>
       <div className="PostDetails-description">
         <span className="text-bold">{user.username}</span> {post.description}
       </div>
       <p className="PostDetails-createdAt">{format(post.createdAt)}</p>
     </div>
-  );
+  )
 }
 
-export default PostDetails;
+export default PostDetails

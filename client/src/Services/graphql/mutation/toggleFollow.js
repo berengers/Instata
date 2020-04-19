@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost'
 
 export const TOGGLE_FOLLOW = gql`
   mutation toggleFollow($userId: ID!) {
@@ -8,4 +8,4 @@ export const TOGGLE_FOLLOW = gql`
       followersCount
     }
   }
-`;
+`

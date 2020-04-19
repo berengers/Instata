@@ -1,14 +1,16 @@
-import React, { FunctionComponent, useState } from "react";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { SwitchTransition, Transition } from "react-transition-group";
+import React, { useState } from 'react'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import { SwitchTransition, Transition } from 'react-transition-group'
 
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import "./likeButton.scss";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import './likeButton.scss'
 
-const SwitchLike: FunctionComponent<{ liked: boolean }> = ({
-  children,
-  liked
-}) => {
+interface SwitchLikeInterface {
+  children: any
+  liked: boolean
+}
+
+function SwitchLike({ children, liked }: SwitchLikeInterface) {
   return (
     <SwitchTransition mode="out-in">
       <Transition
@@ -18,33 +20,33 @@ const SwitchLike: FunctionComponent<{ liked: boolean }> = ({
         unmountOnExit
         mountOnEnter
       >
-        {(state: any) => (
+        {state => (
           <div className={`LikeButton-transition-container ${state}`}>
             {children}
           </div>
         )}
       </Transition>
     </SwitchTransition>
-  );
-};
-
-interface ILikeButton {
-  postId: string;
-  liked: boolean;
-  onClick: (postId: string) => void;
+  )
 }
 
-function LikeButton({
+interface LikeButtonInterface {
+  postId: string
+  liked: boolean
+  onClick: (postId: string) => void
+}
+
+export default function LikeButton({
   postId,
   liked: initLiked,
   onClick: toggleLike
-}: ILikeButton) {
-  const [liked, setLiked] = useState(initLiked);
+}: LikeButtonInterface) {
+  const [liked, setLiked] = useState(initLiked)
 
   const toggle = () => {
-    setLiked(!liked);
-    toggleLike(postId);
-  };
+    setLiked(!liked)
+    toggleLike(postId)
+  }
 
   return (
     <div className="LikeButton">
@@ -56,6 +58,5 @@ function LikeButton({
         )}
       </SwitchLike>
     </div>
-  );
+  )
 }
-export default LikeButton;

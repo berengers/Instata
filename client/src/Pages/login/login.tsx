@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import React, { useState, useContext } from 'react'
+import { useMutation } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
 
-import Loader from "Lib/loader/loader";
-import { UserContext } from "Services/context/userContext";
-import illustration from "Static/login-image.png";
-import logo from "Static/instata-logo.png";
-import "./login.scss";
+import Loader from 'Lib/loader/loader'
+import { UserContext } from 'Services/context/userContext'
+import illustration from 'Static/login-image.png'
+import logo from 'Static/instata-logo.png'
+import './login.scss'
 
 const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -20,43 +20,43 @@ const LOGIN_USER = gql`
       }
     }
   }
-`;
+`
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { setUserContext } = useContext(UserContext);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === "email") {
-      setEmail(e.target.value);
-    } else {
-      setPassword(e.target.value);
-    }
-  };
-
-  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    try {
-      await login({ variables: { email, password } });
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { setUserContext } = useContext(UserContext)
 
   const [login, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted({ login }) {
-      localStorage.setItem("token", login.token as string);
+      localStorage.setItem('token', login.token as string)
       setUserContext(
         true,
         login.user.id as number,
         login.user.username as string,
         login.user.name as string,
         login.user.profilePicture as string
-      );
+      )
     }
-  });
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === 'email') {
+      setEmail(e.target.value)
+    } else {
+      setPassword(e.target.value)
+    }
+  }
+
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try {
+      await login({ variables: { email, password } })
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   return (
     <div className="Login">
@@ -101,7 +101,7 @@ function Login() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

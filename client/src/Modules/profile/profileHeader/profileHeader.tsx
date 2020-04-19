@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
-import "./profileHeader.scss";
-import { getUser_user } from "Pages/profile/types/getUser";
-import ProfileHeaderButtons from "Modules/profile/profilHeaderButtons/profileHeaderButtons";
-import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
+import './profileHeader.scss'
+import { getUser_user as getUserInterface } from 'Pages/profile/types/getUser'
+import ProfileHeaderButtons from 'Modules/profile/profilHeaderButtons/profileHeaderButtons'
+import AvatarButton from 'Lib/buttons/avatarButton/avatarButton'
 
-function ProfileHeader({ user }: { user: getUser_user }) {
+function ProfileHeader({ user }: { user: getUserInterface }) {
   return (
     <header className="ProfileHeader">
       <div className="ProfileHeader-profilPictureContainer">
@@ -13,7 +13,7 @@ function ProfileHeader({ user }: { user: getUser_user }) {
           pictureLink={user.profilePicture}
           to={`/${user.username}`}
           pictureLabel={user.username}
-          size={"150px"}
+          size={'150px'}
         />
       </div>
       <div className="ProfileHeader-information">
@@ -45,7 +45,7 @@ function ProfileHeader({ user }: { user: getUser_user }) {
         </div>
       </div>
     </header>
-  );
+  )
 }
 
-export default ProfileHeader;
+export default ProfileHeader

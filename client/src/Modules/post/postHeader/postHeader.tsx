@@ -1,16 +1,21 @@
-import React from "react";
+import React from 'react'
 
-import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
-import "./postHeader.scss";
+import AvatarButton from 'Lib/buttons/avatarButton/avatarButton'
+import './postHeader.scss'
 
-interface IProps {
-  to: string;
-  pictureLink: string | null;
-  pictureLabel: string;
-  username: string;
+interface PropsInterface {
+  to: string
+  pictureLink: string | null
+  pictureLabel: string
+  username: string
 }
 
-function PostHeader({ pictureLabel, pictureLink, to, username }: IProps) {
+function PostHeader({
+  pictureLabel,
+  pictureLink,
+  to,
+  username
+}: PropsInterface) {
   return (
     <div className="PostHeader">
       <AvatarButton
@@ -22,7 +27,7 @@ function PostHeader({ pictureLabel, pictureLink, to, username }: IProps) {
         <strong>{username}</strong>
       </div>
     </div>
-  );
+  )
 }
 
-export default PostHeader;
+export default PostHeader
