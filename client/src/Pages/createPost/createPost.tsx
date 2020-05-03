@@ -59,8 +59,7 @@ export default function CreatePost() {
         setDescription(value)
         break
       default:
-        console.error(`This value is not valide: ${name}`)
-        break
+        throw `This value is not valide: ${name}`
     }
   }
 
@@ -82,7 +81,7 @@ export default function CreatePost() {
       setPhotoUrl('')
       setDescription('')
     } catch (error) {
-      console.error(error.message)
+      throw error.message
     }
   }
 
