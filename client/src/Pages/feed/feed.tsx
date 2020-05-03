@@ -1,13 +1,13 @@
-import React from "react";
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/react-hooks";
+import React from 'react'
+import { gql } from 'apollo-boost'
+import { useQuery } from '@apollo/react-hooks'
 
-import PostDetails from "Modules/post/postDetails/postDetails";
-import Sidebar from "Modules/feedSideBar/sideBarFeed";
-import Loader from "Lib/loader/loader";
-import useInfiniteScroll from "Lib/hooks/useInfiniteScroll";
-import { feed } from "./types/feed";
-import "./feed.scss";
+import PostDetails from 'Modules/post/postDetails/postDetails'
+import Sidebar from 'Modules/feedSideBar/sideBarFeed'
+import Loader from 'Lib/loader/loader'
+import useInfiniteScroll from 'Lib/hooks/useInfiniteScroll'
+import { feed } from './types/feed'
+import './feed.scss'
 
 const GET_FEED = gql`
   query feed($limit: Int, $cursor: FeedCursorInput) {
@@ -32,17 +32,17 @@ const GET_FEED = gql`
       }
     }
   }
-`;
+`
 
-function Feed() {
-  const limit = 6;
+function Feed(): JSX.Element {
+  const limit = 6
   const { data, loading, error, fetchMore } = useQuery<feed>(GET_FEED, {
     variables: { limit },
-    fetchPolicy: "cache-and-network"
-  });
+    fetchPolicy: 'cache-and-network'
+  })
 
-  async function loadMore() {
-    if (!data || !data.feed.hasMore || !data.feed.cursor) return;
+  async function loadMore(): Promise<void> {
+    if (!data || !data.feed.hasMore || !data.feed.cursor) return
 
     await fetchMore({
       variables: {
@@ -52,7 +52,11 @@ function Feed() {
         },
         limit
       },
-      updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          throw new Error(`fetchMoreResult is: ${fetchMoreResult}`)
+        }
+
         return {
           feed: {
             cursor: Object.assign(
@@ -66,29 +70,29 @@ function Feed() {
             ],
             __typename: fetchMoreResult.feed.__typename
           }
-        };
+        }
       }
-    });
+    })
   }
 
   const [ref] = useInfiniteScroll({
     cb: loadMore,
-    observerOptions: { rootMargin: "1500px" }
-  });
+    observerOptions: { rootMargin: '1500px' }
+  })
 
-  if (!data || (!data.feed && loading)) return <Loader display={loading} />;
-  if (error) return <div>Error</div>;
+  if (!data || (!data.feed && loading)) return <Loader display={loading} />
+  if (error) return <div>Error</div>
 
   const {
     feed: { hasMore, posts }
-  } = data;
+  } = data
 
   if (posts.length === 0) {
     return (
-      <p style={{ textAlign: "center" }}>
+      <p style={{ textAlign: 'center' }}>
         You follow profiles with currently no posts
       </p>
-    );
+    )
   }
 
   return (
@@ -107,7 +111,7 @@ function Feed() {
         <Sidebar />
       </aside>
     </div>
-  );
+  )
 }
 
-export default Feed;
+export default Feed

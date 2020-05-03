@@ -1,14 +1,14 @@
-import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
-import { useParams } from "react-router-dom";
+import React from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
+import { useParams } from 'react-router-dom'
 
-import ProfileHeader from "Modules/profile/profileHeader/profileHeader";
-import PostsList from "Modules/post/postsList/postsList";
-import Loader from "Lib/loader/loader";
-import useInfiniteScroll from "Lib/hooks/useInfiniteScroll";
-import { getUser } from "./types/getUser";
-import "./profile.scss";
+import ProfileHeader from 'Modules/profile/profileHeader/profileHeader'
+import PostsList from 'Modules/post/postsList/postsList'
+import Loader from 'Lib/loader/loader'
+import useInfiniteScroll from 'Lib/hooks/useInfiniteScroll'
+import { getUser } from './types/getUser'
+import './profile.scss'
 
 const GET_USER_HEADER = gql`
   query getUser(
@@ -42,20 +42,21 @@ const GET_USER_HEADER = gql`
       }
     }
   }
-`;
+`
 
 function Profile() {
-  const limit = 9;
-  const { username } = useParams();
+  const limit = 9
+  const { username } = useParams()
   const { loading, error, data, fetchMore } = useQuery<getUser>(
     GET_USER_HEADER,
     {
       variables: { username, limit }
     }
-  );
+  )
+  const { user } = data || {}
 
   async function loadMore() {
-    if (!user.posts.hasMore) return;
+    if (!user || !user.posts.hasMore) return
 
     await fetchMore({
       variables: {
@@ -83,22 +84,20 @@ function Profile() {
             },
             __typename: fetchMoreResult.user.__typename
           }
-        };
+        }
       }
-    });
+    })
   }
 
   const [ref] = useInfiniteScroll({
     cb: loadMore,
-    observerOptions: { rootMargin: "500px" }
-  });
+    observerOptions: { rootMargin: '500px' }
+  })
 
-  if (loading) return <Loader style={{ marginTop: "20px" }} />;
+  if (loading) return <Loader style={{ marginTop: '20px' }} />
 
-  if (error) return <p>ERROR: {error.message}</p>;
-  if (data === undefined) return <p>ERROR</p>;
-
-  const { user } = data;
+  if (error) return <p>ERROR: {error.message}</p>
+  if (data === undefined || !user) return <p>ERROR</p>
 
   return (
     <div className="Profile" data-test="profile-page">
@@ -108,11 +107,11 @@ function Profile() {
       <PostsList posts={user.posts.posts} />
       {user.posts.hasMore && (
         <div ref={ref}>
-          <Loader style={{ marginTop: "20px" }} />
+          <Loader style={{ marginTop: '20px' }} />
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Profile;
+export default Profile

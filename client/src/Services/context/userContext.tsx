@@ -1,36 +1,34 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
-interface IUserContext {
-  isLogged: boolean;
-  userId: number;
-  username: string;
-  name: string;
-  profilePicture?: string;
+interface UserContextInterface {
+  isLogged: boolean
+  userId: number
+  username: string
+  name: string
+  profilePicture?: string
   setUserContext: (
     isLogged: boolean,
     userId?: number,
     username?: string,
     name?: string,
     profilePicture?: string
-  ) => void;
+  ) => void
 }
 
-export const CreateUserContext = (): IUserContext => {
-  const tokenExist = Boolean(localStorage.getItem("token"));
-  const contextLocal = JSON.parse(
-    localStorage.getItem("userContext") as string
-  );
-  const [isLogged, setIsLogged] = useState(tokenExist);
+export const CreateUserContext = (): UserContextInterface => {
+  const tokenExist = Boolean(localStorage.getItem('token'))
+  const contextLocal = JSON.parse(localStorage.getItem('userContext') as string)
+  const [isLogged, setIsLogged] = useState(tokenExist)
   const [userId, setUserId] = useState(
     contextLocal ? contextLocal.userId : null
-  );
+  )
   const [username, setUsername] = useState(
-    contextLocal ? contextLocal.username : ""
-  );
-  const [name, setName] = useState(contextLocal ? contextLocal.name : "");
+    contextLocal ? contextLocal.username : ''
+  )
+  const [name, setName] = useState(contextLocal ? contextLocal.name : '')
   const [profilePicture, setProfilePicture] = useState(
-    contextLocal ? contextLocal.profilePicture : ""
-  );
+    contextLocal ? contextLocal.profilePicture : ''
+  )
 
   const setUserContext = (
     isLogged: boolean,
@@ -39,26 +37,26 @@ export const CreateUserContext = (): IUserContext => {
     name?: string,
     profilePicture?: string
   ) => {
-    setIsLogged(isLogged);
+    setIsLogged(isLogged)
 
     if (isLogged) {
-      if (userId) setUserId(userId);
-      if (username) setUsername(username);
-      if (name) setName(name);
-      if (profilePicture) setProfilePicture(profilePicture);
+      if (userId) setUserId(userId)
+      if (username) setUsername(username)
+      if (name) setName(name)
+      if (profilePicture) setProfilePicture(profilePicture)
 
       localStorage.setItem(
-        "userContext",
+        'userContext',
         JSON.stringify({ isLogged, userId, username, name, profilePicture })
-      );
+      )
     } else {
-      setUserId(null);
-      setUsername("");
-      setName("");
-      setProfilePicture("");
-      localStorage.removeItem("userContext");
+      setUserId(null)
+      setUsername('')
+      setName('')
+      setProfilePicture('')
+      localStorage.removeItem('userContext')
     }
-  };
+  }
 
   return {
     isLogged,
@@ -67,7 +65,7 @@ export const CreateUserContext = (): IUserContext => {
     name,
     profilePicture,
     setUserContext
-  };
-};
+  }
+}
 
-export const UserContext = React.createContext({} as IUserContext);
+export const UserContext = React.createContext({} as UserContextInterface)

@@ -1,19 +1,19 @@
-import React from "react";
-import PersonIcon from "@material-ui/icons/Person";
-import CheckIcon from "@material-ui/icons/Check";
+import React from 'react'
+import PersonIcon from '@material-ui/icons/Person'
+import CheckIcon from '@material-ui/icons/Check'
 
-import Loader from "Lib/loader/loader";
-import "./unsubscribeButton.scss";
+import Loader from 'Lib/loader/loader'
+import './unsubscribeButton.scss'
 
-interface IProps {
-  loading: boolean;
-  onClick: () => void;
+interface PropsInterface {
+  loading: boolean
+  onClick: () => void
 }
 
 export default function UnsubscribeButton({
   loading,
   onClick: clickButton
-}: IProps) {
+}: PropsInterface) {
   return (
     <div className="UnsubscribeButton" data-test="unsubscribe-button">
       <div className="UnsubscribeButton-buttonContainer" onClick={clickButton}>
@@ -24,5 +24,5 @@ export default function UnsubscribeButton({
         <Loader display={loading} button />
       </div>
     </div>
-  );
+  )
 }

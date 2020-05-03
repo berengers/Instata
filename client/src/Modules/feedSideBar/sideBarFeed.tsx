@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { UserContext } from "Services/context/userContext";
+import React, { useContext } from 'react'
+import { UserContext } from 'Services/context/userContext'
 
-import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
-import "./sideBarFeed.scss";
+import AvatarButton from 'Lib/buttons/avatarButton/avatarButton'
+import './sideBarFeed.scss'
 
 export default function Sidebar() {
-  const { profilePicture, username, name } = useContext(UserContext);
+  const { profilePicture, username, name } = useContext(UserContext)
 
   return (
     <div className="SideBarFeed">
@@ -21,5 +21,5 @@ export default function Sidebar() {
         </div>
       </div>
     </div>
-  );
+  )
 }

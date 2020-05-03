@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
-import HomeIcon from "@material-ui/icons/Home";
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react'
+import HomeIcon from '@material-ui/icons/Home'
+import { Link } from 'react-router-dom'
 
-import "./appBar.scss";
-import logo from "Static/instata-logo.png";
-import { UserContext } from "Services/context/userContext";
-import AvatarButton from "Lib/buttons/avatarButton/avatarButton";
-import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
+import './appBar.scss'
+import logo from 'Static/instata-logo.png'
+import { UserContext } from 'Services/context/userContext'
+import AvatarButton from 'Lib/buttons/avatarButton/avatarButton'
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera'
 
 interface PropsInterface {
-  isPrivate: boolean;
+  isPrivate: boolean
 }
 
 function AppBar({ isPrivate }: PropsInterface) {
-  const { username, profilePicture } = useContext(UserContext);
+  const { username, profilePicture } = useContext(UserContext)
 
   return (
     <div className="AppBar">
@@ -42,7 +42,7 @@ function AppBar({ isPrivate }: PropsInterface) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default AppBar;
+export default AppBar

@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react'
 
-import Modal from "Lib/modal/modal/modal";
-import "./userSettingsModal.scss";
+import Modal from 'Lib/modal/modal/modal'
+import './userSettingsModal.scss'
 
-interface IProps {
-  display: boolean;
-  logout: () => void;
-  setDisplay: (value: boolean) => void;
+interface PropsInterface {
+  display: boolean
+  logout: () => void
+  setDisplay: (value: boolean) => void
 }
 
 export default function UserSettingsModal({
   display,
   logout,
   setDisplay
-}: IProps) {
-  const closeModal = () => setDisplay(false);
+}: PropsInterface) {
+  const closeModal = () => setDisplay(false)
 
   return (
     <div className="UserSettingsModal">
@@ -25,5 +25,5 @@ export default function UserSettingsModal({
         </div>
       </Modal>
     </div>
-  );
+  )
 }

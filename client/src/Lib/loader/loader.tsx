@@ -1,28 +1,28 @@
-import React from "react";
+import React from 'react'
 
-import loader from "Static/loader.gif";
-import "./loader.scss";
+import loader from 'Static/loader.gif'
+import './loader.scss'
 
-interface IProps {
-  button?: boolean;
-  display?: boolean;
-  large?: boolean;
-  size?: string;
-  style?: any;
+interface PropsInterface {
+  button?: boolean
+  display?: boolean
+  large?: boolean
+  size?: string
+  style?: any
 }
 
 export default function Loader({
   button = false,
   display = true,
   large = false,
-  size = "36px",
+  size = '36px',
   style
-}: IProps) {
-  const loaderSize = large ? "50px" : size;
+}: PropsInterface) {
+  const loaderSize = large ? '50px' : size
 
   return (
-    <div className={`Loader  ${!display ? "displayNone" : ""}`}>
-      <div className={`Loader-imageContainer ${button ? "buttonMode" : ""}`}>
+    <div className={`Loader  ${!display ? 'displayNone' : ''}`}>
+      <div className={`Loader-imageContainer ${button ? 'buttonMode' : ''}`}>
         <img
           src={loader}
           alt="loader"
@@ -32,5 +32,5 @@ export default function Loader({
         />
       </div>
     </div>
-  );
+  )
 }

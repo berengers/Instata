@@ -1,26 +1,26 @@
-import React, { MouseEvent, ReactNode } from "react";
-import { CSSTransition } from "react-transition-group";
+import React, { MouseEvent, ReactNode } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
-import "./modal.scss";
+import './modal.scss'
 
-interface IProps {
-  children: ReactNode;
-  display?: boolean;
-  setDisplay: (value: boolean) => void;
+interface PropsInterface {
+  children: ReactNode
+  display?: boolean
+  setDisplay: (value: boolean) => void
 }
 
 export default function Modal({
   display = true,
   children,
   setDisplay
-}: IProps) {
-  const clickOverlay = (event: MouseEvent) => {
-    setDisplay(false);
-  };
+}: PropsInterface) {
+  const clickOverlay = () => {
+    setDisplay(false)
+  }
 
   const clickCard = (event: MouseEvent) => {
-    event.stopPropagation();
-  };
+    event.stopPropagation()
+  }
 
   return (
     <div className="Modal">
@@ -37,5 +37,5 @@ export default function Modal({
         </div>
       </CSSTransition>
     </div>
-  );
+  )
 }

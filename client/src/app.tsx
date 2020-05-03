@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useContext } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { UserContext } from "Services/context/userContext";
-import Feed from "Pages/feed/feed";
-import Login from "Pages/login/login";
-import Profile from "Pages/profile/profile";
-import AppBar from "Modules/app/appBar/appBar";
-import CreatePost from "Pages/createPost/createPost";
-import "./app.scss";
+import { UserContext } from 'Services/context/userContext'
+import Feed from 'Pages/feed/feed'
+import Login from 'Pages/login/login'
+import Profile from 'Pages/profile/profile'
+import AppBar from 'Modules/app/appBar/appBar'
+import CreatePost from 'Pages/createPost/createPost'
+import './app.scss'
 
 function App() {
-  const { isLogged } = useContext(UserContext);
+  const { isLogged } = useContext(UserContext)
 
   return (
     <div className="App">
@@ -36,7 +36,7 @@ function App() {
         </div>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

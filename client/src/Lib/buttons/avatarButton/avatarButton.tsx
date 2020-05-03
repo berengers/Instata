@@ -1,22 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-import profilePictureDeafult from "Static/profile-picture-default.png";
-import "./avatarButton.scss";
+import profilePictureDeafult from 'Static/profile-picture-default.png'
+import './avatarButton.scss'
 
-interface IProps {
-  to: string;
-  size?: string;
-  pictureLink?: string | null;
-  pictureLabel?: string;
+interface PropsInterface {
+  to: string
+  size?: string
+  pictureLink?: string | null
+  pictureLabel?: string
 }
 
 function AvatarButton({
   to,
-  size = "32px",
+  size = '32px',
   pictureLink,
   pictureLabel
-}: IProps) {
+}: PropsInterface) {
   return (
     <div className="AvatarButton">
       <Link to={to}>
@@ -32,6 +32,6 @@ function AvatarButton({
         </div>
       </Link>
     </div>
-  );
+  )
 }
-export default AvatarButton;
+export default AvatarButton
