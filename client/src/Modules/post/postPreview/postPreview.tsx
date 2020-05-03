@@ -22,7 +22,6 @@ function PostPreview({ post }: PropsInterface) {
       data-test="postPreview-component"
       onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onClick={console.log}
     >
       <div className="PostPreview-container">
         <img src={post.media} alt="post" className="PostPreview-thumb" />

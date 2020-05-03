@@ -53,8 +53,8 @@ function Login() {
 
     try {
       await login({ variables: { email, password } })
-    } catch (e) {
-      console.error(e)
+    } catch (error) {
+      throw error.message
     }
   }
 

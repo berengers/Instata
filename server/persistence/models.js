@@ -1,7 +1,7 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 
 module.exports = db => {
-  const User = db.define("users", {
+  const User = db.define('users', {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     email: { type: Sequelize.STRING, unique: true, allowNull: false },
     username: { type: Sequelize.STRING, unique: true, allowNull: false },
@@ -12,18 +12,18 @@ module.exports = db => {
   });
 
   const UserSubscription = db.define(
-    "userSubscriptions",
+    'userSubscriptions',
     {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       userFollowerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: "user", key: "id" }
+        references: { model: 'user', key: 'id' }
       },
       userFollowingId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: "user", key: "id" }
+        references: { model: 'user', key: 'id' }
       }
     },
     {
@@ -31,19 +31,19 @@ module.exports = db => {
     }
   );
 
-  const Token = db.define("tokens", {
+  const Token = db.define('tokens', {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     token: { type: Sequelize.STRING, allowNull: false },
     userId: { type: Sequelize.INTEGER, allowNull: false }
   });
 
-  const Like = db.define("likes", {
+  const Like = db.define('likes', {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     postId: { type: Sequelize.INTEGER, allowNull: false },
     userId: { type: Sequelize.INTEGER, allowNull: false }
   });
 
-  const Post = db.define("posts", {
+  const Post = db.define('posts', {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     description: { type: Sequelize.TEXT, allowNull: true },
     media: { type: Sequelize.STRING, allowNull: true },
@@ -51,47 +51,47 @@ module.exports = db => {
   });
 
   User.belongsToMany(User, {
-    through: "userSubscriptions",
-    foreignKey: "userFollowingId",
-    as: "userFollowing"
+    through: 'userSubscriptions',
+    foreignKey: 'userFollowingId',
+    as: 'userFollowing'
   });
 
   UserSubscription.belongsTo(User, {
-    foreignKey: "userFollowerId",
-    as: "userFollower"
+    foreignKey: 'userFollowerId',
+    as: 'userFollower'
   });
 
   UserSubscription.belongsTo(User, {
-    foreignKey: "userFollowingId",
-    as: "userFollowing"
+    foreignKey: 'userFollowingId',
+    as: 'userFollowing'
   });
 
   User.belongsToMany(User, {
-    through: "userSubscriptions",
-    foreignKey: "userFollowerId",
-    as: "userFollower"
+    through: 'userSubscriptions',
+    foreignKey: 'userFollowerId',
+    as: 'userFollower'
   });
 
   User.belongsToMany(Like, {
     through: Like,
-    foreignKey: "likeId",
-    as: "likeId"
+    foreignKey: 'likeId',
+    as: 'likeId'
   });
 
   Like.belongsTo(User, {
-    foreignKey: "userId",
-    as: "user"
+    foreignKey: 'userId',
+    as: 'user'
   });
 
   Like.belongsTo(Post, {
-    foreignKey: "postId",
-    as: "post"
+    foreignKey: 'postId',
+    as: 'post'
   });
 
   Post.belongsToMany(Like, {
     through: Like,
-    foreignKey: "likeId",
-    as: "likeId"
+    foreignKey: 'likeId',
+    as: 'likeId'
   });
 
   Token.belongsTo(User);
