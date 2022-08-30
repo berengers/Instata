@@ -14,12 +14,14 @@ docker-compose -f docker-compose.stack.yaml -f docker-compose.app.yaml up -d
 ```sh
 docker-compose -f docker-compose.stack.yaml up -d
 
-## run server in dev mode
+## run server in dev mode with node 10
 cd server
+npm install
 npm start
 npm run fixtures
 
-## run client in dev mode
+## run client in dev mode with node 10
 cd client
+npm install
 npm start
 ```
