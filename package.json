@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "sequelize-cli": "^6.5.1",
+    "sequelize-cli-typescript": "^3.2.0-c"
+  }
+}
