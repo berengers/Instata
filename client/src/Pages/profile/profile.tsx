@@ -46,7 +46,7 @@ const GET_USER_HEADER = gql`
 
 function Profile() {
   const limit = 9
-  const { username } = useParams()
+  const { username } = useParams<{ username: string }>()
   const { loading, error, data, fetchMore } = useQuery<getUser>(
     GET_USER_HEADER,
     {

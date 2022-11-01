@@ -13,42 +13,6 @@ export interface PostCursorInput {
     postDate: Date;
 }
 
-export interface PostInput {
-    description?: Nullable<string>;
-    media: string;
-    createdAt?: Nullable<Date>;
-    updatedAt?: Nullable<Date>;
-}
-
-export interface FeedCursorInput {
-    postDate: Date;
-    postId: string;
-}
-
-export interface FeedCursor {
-    postDate: Date;
-    postId: string;
-}
-
-export interface FeedResponse {
-    cursor?: Nullable<FeedCursor>;
-    hasMore?: Nullable<boolean>;
-    posts: Post[];
-}
-
-export interface Like {
-    id: string;
-    user: PublicUser;
-    post: Post;
-    createdAt: Date;
-    updatedAt: Date;
-}
-
-export interface Login {
-    token: string;
-    user: PublicUser;
-}
-
 export interface Post {
     id: string;
     description?: Nullable<string>;
@@ -63,9 +27,26 @@ export interface PostsCursor {
 }
 
 export interface PostsResponse {
-    cursor: PostsCursor;
-    hasMore: boolean;
+    cursor?: Nullable<PostsCursor>;
     posts: Post[];
+}
+
+export interface IQuery {
+    posts: PostsResponse;
+    getUser?: Nullable<PublicUser>;
+}
+
+export interface User {
+    id: string;
+    email: string;
+    username: string;
+    name?: Nullable<string>;
+    description?: Nullable<string>;
+    password: string;
+    profilePicture?: Nullable<string>;
+    createdAt: Date;
+    updatedAt: Date;
+    posts: Nullable<Post>[];
 }
 
 export interface PublicUser {
@@ -74,30 +55,8 @@ export interface PublicUser {
     name: string;
     description?: Nullable<string>;
     profilePicture?: Nullable<string>;
-    isFollowed?: Nullable<boolean>;
-    follows: PublicUser[];
-    followsCount: number;
-    followers: PublicUser[];
-    followersCount: number;
-    posts: PostsResponse;
-    postsCount: number;
     createdAt: Date;
     updatedAt: Date;
-}
-
-export interface IQuery {
-    user: PublicUser;
-    post: Post;
-    posts: PostsResponse;
-    feed: FeedResponse;
-}
-
-export interface IMutation {
-    toggleFollow: PublicUser;
-    createPost: Post;
-    togglePostLike: Post;
-    login: Login;
-    logout?: Nullable<boolean>;
 }
 
 type Nullable<T> = T | null;

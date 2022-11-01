@@ -1,6 +1,8 @@
 'use strict';
 const { loremIpsum } = require('lorem-ipsum');
 
+const { getUuid } = require('./utils/uuidManager');
+
 const loremOptions = () => ({
   count: Math.floor(Math.random() * 3 + 1),
   units: 'paragraph',
@@ -14,195 +16,227 @@ const dates = {
 
 const posts = [
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '1',
+    userId: getUuid('user', 1),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '2',
+    userId: getUuid('user', 2),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '2',
+    userId: getUuid('user', 2),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '3',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '3',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '3',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '3',
+    userId: getUuid('user', 3),
     ...dates,
   },
   {
+    id: getUuid('post', ++i),
     description: lorem(),
     media: `https://picsum.photos/id/${(i += 1)}/800/800`,
-    userId: '3',
+    userId: getUuid('user', 3),
     ...dates,
   },
 ];
@@ -219,7 +253,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert('Posts', posts, {});
+    await queryInterface.bulkInsert('Post', posts, {});
   },
 
   async down(queryInterface, Sequelize) {
@@ -229,6 +263,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Posts', null, {});
+    await queryInterface.bulkDelete('Post', null, {});
   },
 };

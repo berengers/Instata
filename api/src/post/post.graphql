@@ -1,0 +1,61 @@
+########## SCALAR ###########
+scalar Date
+
+########## TYPE ###########
+
+type Post {
+  id: ID!
+  description: String
+  media: String!
+  # liked: Boolean!
+  # likes: [Like!]!
+  # likesCount: Int!
+  # user: PublicUser!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type PostsCursor {
+  postId: ID!
+  postDate: Date!
+}
+
+type PostsResponse {
+  cursor: PostsCursor
+  posts: [Post!]!
+}
+
+########## INPUT ###########
+
+input PostCursorInput {
+  postId: ID!
+  postDate: Date!
+}
+
+# input PostInput {
+#   description: String
+#   media: String!
+#   createdAt: Date
+#   updatedAt: Date
+# }
+
+# input FeedCursorInput {
+#   postDate: Date!
+#   postId: ID!
+# }
+
+########## QUERY ###########
+
+type Query {
+  # post(id: ID!): Post!
+  posts(username: String, cursor: PostCursorInput, limit: Int): PostsResponse!
+  # feed(limit: Int, cursor: FeedCursorInput): FeedResponse!
+}
+
+########## MUTATION ###########
+
+# type Mutation {
+# toggleFollow(userId: ID!): PublicUser!
+# createPost(post: PostInput!): Post!
+# togglePostLike(postId: ID!): Post!
+# }

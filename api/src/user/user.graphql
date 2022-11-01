@@ -1,0 +1,50 @@
+########## SCALAR ###########
+scalar Date
+
+########## TYPE ###########
+
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  name: String
+  description: String
+  password: String!
+  profilePicture: String
+  createdAt: Date!
+  updatedAt: Date!
+  posts: [Post]!
+}
+
+type PublicUser {
+  id: ID!
+  username: String!
+  name: String!
+  description: String
+  profilePicture: String
+  # isFollowed: Boolean
+  # follows: [PublicUser!]!
+  # followsCount: Int!
+  # followers: [PublicUser!]!
+  # followersCount: Int!
+  # posts(userId: ID, cursor: PostCursorInput, limit: Int): PostsResponse!
+  # postsCount: Int!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+########## INPUT ###########
+
+########## QUERY ###########
+
+type Query {
+  getUser(username: String!): PublicUser
+}
+
+########## MUTATION ###########
+
+# type Mutation {
+# toggleFollow(userId: ID!): PublicUser!
+# createPost(post: PostInput!): Post!
+# togglePostLike(postId: ID!): Post!
+# }

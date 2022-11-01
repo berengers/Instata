@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker'
 import { UserContext, CreateUserContext } from './Services/context/userContext'
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:8080/api',
+  uri: 'http://localhost:4000/graphql',
   request: operation => {
     operation.setContext({
       headers: { authorization: localStorage.getItem('token') }

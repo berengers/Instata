@@ -5,7 +5,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { SequelizeModule } from '@nestjs/sequelize';
 
 import { join } from 'path';
-import { PostsModule } from './posts/posts.module';
+import { PostsModule } from './post/post.module';
+import { UsersModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -18,6 +19,9 @@ import { PostsModule } from './posts/posts.module';
       database: 'postgres',
       autoLoadModels: true,
       synchronize: true,
+      sync: {
+        force: false,
+      },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -31,6 +35,7 @@ import { PostsModule } from './posts/posts.module';
       playground: false,
     }),
     PostsModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
