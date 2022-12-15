@@ -16,7 +16,7 @@
     "apollo-datasource": "^0.7.0",
     "apollo-server": "^2.11.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-pino-logger": "^4.0.0",
     "graphql": "^14.6.0",
     "isemail": "^3.2.0",
